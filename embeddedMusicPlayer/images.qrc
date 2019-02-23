@@ -1,0 +1,31 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/000.jpg</file>
+        <file>images/1.jpg</file>
+        <file>images/2.jpg</file>
+        <file>images/8.png</file>
+        <file>images/18.png</file>
+        <file>images/20.png</file>
+        <file>images/22.png</file>
+        <file>images/back.png</file>
+        <file>images/exit.png</file>
+        <file>images/go.png</file>
+        <file>images/gtk-open.png</file>
+        <file>images/ico.ico</file>
+        <file>images/icon.png</file>
+        <file>images/list.png</file>
+        <file>images/lrc.png</file>
+        <file>images/next.png</file>
+        <file>images/pause.png</file>
+        <file>images/play.png</file>
+        <file>images/previous.png</file>
+        <file>images/remove.png</file>
+        <file>images/restart.png</file>
+        <file>images/sound.png</file>
+        <file>images/sstop.png</file>
+        <file>images/start.png</file>
+        <file>images/stop.png</file>
+        <file>images/VMP2.png</file>
+        <file>images/ok.jpg</file>
+    </qresource>
+</RCC>

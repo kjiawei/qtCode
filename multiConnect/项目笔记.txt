@@ -1,0 +1,54 @@
+4.28
+makefile用法(规则写法)
+搭建自动开发环境(shell->makefile:关注核心逻辑)
+自动构建:http://www.cnblogs.com/mumuxinfei/p/3992776.html
+http://os.51cto.com/art/201003/185539.htm
+
+4.27翻看老师例子
+绑定IP后为什么还要绑定广播Ip
+主函数语句用封装
+
+4.27第一次编译问题
+1.包含多个.c文件如何编译 gcc server.c my_thread_pool.c -o out -pthread
+2.udp通信例子
+
+4.27 
+1.线程如何与连接任务挂钩
+add_task(,recv_udp_feiq,serversock)
+2.怎么判断添加多少任务和线程
+3.连飞秋需要发什么东西给它,连上后它可能会发什么过来
+4.list_for_each_entry用法(获取用户列表信息如何实现)
+三个参数
+5.get_list()要怎样处理回传给飞秋的信息-字符串拼接
+6.//返回处理后的字符串还是代表内容的节点头
+
+
+项目笔记
+1.点分十进制的ip转换成网络字节序32位ip的四种写法
+//写法一inet_pton(AF_INET,"192.168.1.3",&(myaddr.sin_addr));
+//写法二inet_aton("192.168.1.3",&(myaddr.sin_addr));
+//写法三myaddr.sin_addr.s_addr=htonl(INADDR_ANY);
+//写法四myaddr.sin_addr.s_addr=inet_addr("192.168.1.3");
+
+2.socklen的sizeof  sockaddr与sockaddr_in长度都一样
+socklen accept,recvfrom取地址 bind,send_to不用 
+
+3.udp通信过程(2发送可没) socket bind recvfrom/sendto
+//对比udp没有connect
+4.tcp通信过程(23客没)   socket bind listen (connect)accept send close
+
+tcp备用代码
+con = connect();
+	if(con == -1){perror("con create failed!\n");return -1;}
+	
+	//udp没有accept
+	feiqsock = accept(serversock,(struct sockaddr*)&feiqaddr,&socklen);//接收飞秋
+5.sizeof on//变量可以不加括号
+	
+优秀的设计
+
+发送信号关闭sock
+1.signal(SIGINT,fun);   void fun(int sig){close(tcpsock);close(newsock);exit(0);}
+
+	
+	

@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/folder.png</file>
+        <file>images/pause.png</file>
+        <file>images/play.png</file>
+        <file>images/stop.png</file>
+        <file>images/tv.png</file>
+        <file>images/lcd.png</file>
+        <file>images/exit.png</file>
+        <file>images/playerlogo.png</file>
+        <file>images/tvoutmode.png</file>
+        <file>images/tvoutmode0.png</file>
+    </qresource>
+</RCC>

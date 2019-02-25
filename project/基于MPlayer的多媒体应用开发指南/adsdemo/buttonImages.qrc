@@ -1,0 +1,32 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images_lcd4/button1.png</file>
+        <file>images_lcd4/button1_down.png</file>
+        <file>images_lcd4/button2.png</file>
+        <file>images_lcd4/button2_down.png</file>
+        <file>images_lcd4/button3.png</file>
+        <file>images_lcd4/button3_down.png</file>
+        <file>images_lcd4/button4.png</file>
+        <file>images_lcd4/button4_down.png</file>
+        <file>images_lcd4/button5.png</file>
+        <file>images_lcd4/button5_down.png</file>
+        <file>images_lcd4/button6.png</file>
+        <file>images_lcd4/button6_down.png</file>
+        <file>images_lcd4/button7.png</file>
+        <file>images_lcd4/button7_down.png</file>
+        <file>images_lcd7/button1.png</file>
+        <file>images_lcd7/button1_down.png</file>
+        <file>images_lcd7/button2.png</file>
+        <file>images_lcd7/button2_down.png</file>
+        <file>images_lcd7/button3.png</file>
+        <file>images_lcd7/button3_down.png</file>
+        <file>images_lcd7/button4.png</file>
+        <file>images_lcd7/button4_down.png</file>
+        <file>images_lcd7/button5.png</file>
+        <file>images_lcd7/button5_down.png</file>
+        <file>images_lcd7/button6.png</file>
+        <file>images_lcd7/button6_down.png</file>
+        <file>images_lcd7/button7.png</file>
+        <file>images_lcd7/button7_down.png</file>
+    </qresource>
+</RCC>

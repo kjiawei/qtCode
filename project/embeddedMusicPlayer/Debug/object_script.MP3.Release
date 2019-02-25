@@ -1,0 +1,12 @@
+INPUT(
+./release\player.o
+./release\main.o
+./release\playlistmodel.o
+./release\musiclist.o
+./release\mylrc.o
+./release\qrc_images.o
+./release\moc_player.o
+./release\moc_playlistmodel.o
+./release\moc_musiclist.o
+./release\moc_mylrc.o
+);

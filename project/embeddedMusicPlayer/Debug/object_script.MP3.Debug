@@ -1,0 +1,12 @@
+INPUT(
+./debug\player.o
+./debug\main.o
+./debug\playlistmodel.o
+./debug\musiclist.o
+./debug\mylrc.o
+./debug\qrc_images.o
+./debug\moc_player.o
+./debug\moc_playlistmodel.o
+./debug\moc_musiclist.o
+./debug\moc_mylrc.o
+);

@@ -1,0 +1,161 @@
+移植教程
+需要什么东西 怎么做 为什么 能不能优化 早上视频6：00-18:30[教师机时间与视频上时间] 44:45-   与之前教程(开发板使用整合)    UI库与系统 无线串口 仓库IOT系统源码(开发板上的) 老师板上软件:httpDowmPic QMPlayer ServerTcp Tetrix nfc.avi  tslib触摸库完全了解(配置文件)-被老师的覆盖掉了,原来设置使event0设备不能用导致无法校准屏幕
+方法总结:以目的为方向(可分类拓展 经验积累)
+
+开发板使用
+1.校准屏幕 串口连接后的系统下,直接运行ts_calibrate 
+有五个点:左上 右 右下 左 中 依次点击才能成功
+
+运行QT程序->需要QT库armqt5.5.tar.bz2 ->获得QT程序①(使用armqt5.5-gec.all.fonts.tar.bz2进行交叉编译,解压)②tftp等传输
+
+源码编译
+最终生成:armqt5.5-gec.all.fonts.tar.bz2（裁剪过） 用途:交叉编译程序  过程:
+
+静态编译
+
+1.准备工作（以下都是在32位系统下的库）
+a)1.交叉编译好的Qt库（放在linux虚拟机上的armqt5.5-gec.all.fonts.tar.bz2）--linux需要编译程序的环境
+b)2.裁剪编译好的Qt库（放在开发板armqt5.5.tar.bz2）--开发板需要运行程序的环境 (只包含库,去掉头文件 bin等)
+c)3.运行使用的依赖库（字体，触摸，总线库dbus）（armlib-all.tar.bz2）
+d)4.开发板上使用的配置文件（profile）
+e)5.字库文件（fonts.tar.bz2）--可能用途:显示字库.,下载到开发板使用
+f)6.交叉编译工具（arm-linux-gnueabi-4.5.1.tar.bz2）得到4.5.1的arm-linux-gcc编译器
+
+
+2.搭建pc交叉Qt程序环境（linux虚拟机）
+安装交叉编译工具（ 把arm-linux-gnueabi-4.5.1.tar.bz2复制到/opt/目录并解压(推荐/opt目录)，配置环境变量）   
+a)/opt# tar -jxf arm-linux-gnueabi-4.5.1.tar.bz2      会出现usr目录，解压完自动换行
+b)/opt# mv usr/local/arm/4.5.1/ ./     --4.5.1移到当前路径(方便使用),
+c)然后删掉 usr文件夹：rm usr/ -r
+d)把export PATH=/opt/4.5.1/bin:$PATH(可终端临时获取)语句添加到/etc/bash.bashrc文件最后面重新打开终端(exit命令)
+e)新terminal下arm-linux-gcc -v 检查刚才安装的编译器(which arm-linux-gcc)
+2.2安装交叉编译好的Qt库（就把armqt5.5-gec.all.fonts.tar.bz2拷贝过来并解压在/opt目录必须）--节省空间删掉所有压缩包
+
+3.交叉编译Qt程序
+a)进入已经写好的Qt项目代码目录
+i.loginwin.cpp  LoginWin.pro       loginwin.ui
+ii.loginwin.h    LoginWin.pro.user  main.cpp
+iii.gec@ubuntu:/mnt/hgfs/Qt/002/code/LoginWin$ 
+b)在执行/opt/armqt5.5-gec/bin/qmake --会生成交叉编译的Makefile文件（为了后期方便可以制作一个别名alias armqmake=”/opt/armqt5.5-gec/bin/qmake”放在/etc/bash.bashrc文件最后面，后面使用就直接用armqmake）sudo reboot才能生效
+c)执行make ---会生成arm版的Qt程序 （把Qt程序下载到开发板）file命令查看文件描述
+
+4.搭建arm开发板运行环境（下面所有操作是在开发板上）
+a)1.开发板Qt环境删除 进入/opt/目录下 删除所有文件(先备份文件)
+①开发板上的IOT文件夹 ②usr/local/Trolltech（大概占用5%空间 开发板512M）③④
+b)2.把裁剪编译好的Qt库(armqt5.5.tar.bz2)下载到开发板并且解压到/opt目录下 （df可查看目录容量,tftp下载）解压后修改名字mv armqt5.5 armqt5.5-gec(解压完后删源码包)
+1.Tftpd32：被下载文件的路径 默认 2.开发板上输入:tftp -l（下载到当前目录,之前设置为opt） 文件名 -g 文件所在地ip
+c)3.下载依赖库armlib-all.tar.bz2放在/home/tiydy目录下（如果没有tiydy目录就创建一个）解压得到:armlib      
+d)4.下载profile文件到/etc/目录下（如何查看文件修改时间ls -l默认不显示秒） 文件详解
+e)5.下载字库文件fonts.tar.bz2到/usr/share目录下并且解压    用途:[显示中文 字库 触摸屏]
+f)6.重启开发板 cd / 回到根目录 reboot重启开发板
+
+在运行qt程序
+在开发板运行程序出现下面错误
+from:tiydy-2015-10-16
+process 146: D-Bus library appears to be incorrectly set up;
+failed to read machine uuid: Failed to open "/etc/machine-id": No such file or directory
+See the manual page for dbus-uuidgen to correct this issue.
+  D-Bus not built with -rdynamic so unable to print a backtrace
+Aborted
+添加dbus库---库在armlib.tar.bz2下面的lib里面
+解压后，把lib中的库拷贝到开发板lib下
+		把bin下的文件拷贝到开发板bin目录
+在开发板运行 dbus-uuidgen >  /etc/machine-id   (重定向创建文件)
+
+
+问题：tftp  -l  文件名  -g  tftp服务器地址 
+
+
+
+STL---标准模板类库 --www.cplusplus.com
+string ---
+template < class charT,
+           class traits = char_traits<charT>,    // basic_string::traits_type
+           class Alloc = allocator<charT>        // basic_string::allocator_type
+           > class basic_string;
+		   
+typedef basic_string<char> string;
+
+
+list
+template < class T, class Alloc = allocator<T> > class list;
+
+vector
+template < class T, class Alloc = allocator<T> > class vector; // generic template
+
+set ----存储的数据必须是唯一的， 自动排序
+template < class T,                        // set::key_type/value_type
+           class Compare = less<T>,        // set::key_compare/value_compare
+           class Alloc = allocator<T>      // set::allocator_type
+           > class set;
+		   
+		   
+
+map
+template < class Key,                                     // map::key_type
+           class T,                                       // map::mapped_type
+           class Compare = less<Key>,                     // map::key_compare
+           class Alloc = allocator<pair<const Key,T> >    // map::allocator_type
+           > class map;
+
+wizNote:
+留下 systemTrayIcon() restoreWinAction quitAction
+去除button:1.strong focus(软键盘) -policy 2.灰色失效
+QLabel:background 如何设置边框
+//获取目录下所有文件-列表
+    QDir dir("");
+    QStringList filter = {"*.png"};//过滤器
+    QStringList pngList = dir.entryList(filter);//获取目录下所有png
+    //随机数 pngList.at(qrand()%pngList.count())
+自定义列表(下载)
+1.进度条:QProcessBar
+截屏CutScreen //屏幕录制软件
+
+## 多线程
+1.创建一个子类继承QThread,在类中实现截屏
+1.1新建C++类(与界面无关) 继承QThread(加头文件) 
+1.2 ①run()->while(1){}  ②set_screen_show(QLabel *label）;//保存label指针 构造里要设为空
+
+#ifdef WIN32
+#include <windows.h>
+Sleep(200);
+#else
+sleep(200);
+#endif
+
+线程应用
+快速启动系统自带软件:名字保存在系统变量里
+什么场景用到进程
+
+ping  蓝牙搜索器 串口应用
+
+QT移植:交叉编译前先clean
+开发板设置IP程序 udhcpc->开发板查询ip指令
+设置键盘  
+
+网络编程   
+任务:设计好笔记的上传细节(加密 CRC校验)
+小块校验完全可以用CRC或更轻型的校验协议代替
+
+MD5加密
+小文件上传:打包BUFFER发送出去(buffer做大小限制)
+大文件:分块处理
+规范数据有效性的传输协议:告诉服务器需要上传文件 文件块上传 返回每个环节处理的结果
+与老师讨论百度云上传  传输过程中的中间文件005课件.zip.baiduyun.uploading.cfg
+
+QTcpServer 创建套接字 绑定 监听 接收连接
+1.创建QTcpServer对象
+2.监听
+
+QTcpSocket 发送接收数据
+3.当有客户端连接的时候,QTcpServer对象会发生newConnection信号(关联常函数),接收
+4.创建QTcpSocket对象 连接服务器
+
+显示天气信息的项目-xml和json解析
+改进:笔记项目显示最近几天天气
+
+tcp通信-QQ聊天窗口 笔记项目聊天框
+
+app显示图片-版本更新 触摸太敏感-双击改单击
+
+关闭正在运行的程序-打开同名程序出错-改文件名(再给权限)

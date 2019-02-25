@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file alias="appIcon">C:/Users/adm/Desktop/01f732567ba5c932f8759f046bcf3d.gif</file>
+    </qresource>
+</RCC>

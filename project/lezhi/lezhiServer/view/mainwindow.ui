@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QTextEdit" name="urgentNotify">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>50</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="urgentNotifyPush">
+    <property name="geometry">
+     <rect>
+      <x>284</x>
+      <y>60</y>
+      <width>81</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>发送紧急通知</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="requestNewsButton">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>150</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>获取新闻</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="getDHT11Data">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>150</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>获取温感数据</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="reqWeaButton">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>150</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>获取天气</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="serverLabel">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>10</y>
+      <width>181</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>18</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>智能家居服务端</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="toggleButton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>打开服务器</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="deviceList">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>150</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>设备列表</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="connectToOtherServer">
+    <property name="geometry">
+     <rect>
+      <x>664</x>
+      <y>430</y>
+      <width>111</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>连接第三方服务器</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="settings">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>430</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>设置页</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btLight">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>430</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>蓝牙控灯</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="dataCenter">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>430</y>
+      <width>99</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>数据中心</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

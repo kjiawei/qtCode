@@ -1,0 +1,494 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\zhaoliang.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.chs\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\zhaoliang.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\Toolbar.bmp"
+IDB_PEOPLE              BITMAP  DISCARDABLE     "res\\PEOPLE.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR DISCARDABLE  16, 16
+BEGIN
+    BUTTON      ID_SYSTEM_CONNECT
+    BUTTON      ID_SYSTEM_DISCONNECT
+    SEPARATOR
+    BUTTON      ID_MANAGE_ADD
+    BUTTON      ID_MANAGER_CHANGE
+    BUTTON      ID_MANAGER_SEARCH
+    SEPARATOR
+    BUTTON      ID_WINDOW_CASCADE
+    BUTTON      ID_WINDOW_TILE_HORZ
+    BUTTON      ID_WINDOW_TILE_VERT
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "&S系统"
+    BEGIN
+        MENUITEM "&C连接...\tF2",               ID_SYSTEM_CONNECT
+        MENUITEM "&D断开连接\tF3",              ID_SYSTEM_DISCONNECT
+        MENUITEM SEPARATOR
+        MENUITEM "&X退出\tCtrl+Q",              ID_APP_EXIT
+    END
+    POPUP "&M人事管理"
+    BEGIN
+        MENUITEM "&A增加新员工",                ID_MANAGE_ADD
+        MENUITEM "&C人事变动",                  ID_MANAGER_CHANGE
+        MENUITEM "&S查询修改",                  ID_MANAGER_SEARCH
+    END
+    POPUP "&W窗口"
+    BEGIN
+        MENUITEM "&C重叠排列",                  ID_WINDOW_CASCADE
+        MENUITEM "&H水平平铺",                  ID_WINDOW_TILE_HORZ
+        MENUITEM "&V垂直平铺",                  ID_WINDOW_TILE_VERT
+        MENUITEM "&M最小化所有窗口",            ID_WINDOW_MINIALL
+    END
+    POPUP "&H帮助"
+    BEGIN
+        MENUITEM "&A关于...\tF1",               ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "Q",            ID_APP_EXIT,            VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_F1,          ID_APP_ABOUT,           VIRTKEY, NOINVERT
+    VK_F2,          ID_SYSTEM_CONNECT,      VIRTKEY, NOINVERT
+    VK_F3,          ID_SYSTEM_DISCONNECT,   VIRTKEY, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 183, 119
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于..."
+FONT 9, "宋体"
+BEGIN
+    CONTROL         139,IDC_STATIC,"Static",SS_BITMAP,11,13,64,75
+    LTEXT           "人事管理系统   1.0 版",IDC_STATIC,87,24,86,8,
+                    SS_NOPREFIX
+    LTEXT           "版权所有 (C) 2002",IDC_STATIC,93,45,72,8
+    DEFPUSHBUTTON   "确定",IDOK,66,99,50,14,WS_GROUP
+    GROUPBOX        "",IDC_STATIC,1,2,180,94
+END
+
+IDD_DLG_LOGIN DIALOG DISCARDABLE  0, 0, 166, 105
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "系统登陆"
+FONT 9, "宋体"
+BEGIN
+    EDITTEXT        IDC_EDT_USER,62,43,50,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDT_PASSWD,62,60,50,14,ES_PASSWORD | ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "登录",IDOK,24,81,50,14
+    PUSHBUTTON      "取消",IDCANCEL,92,80,50,14
+    LTEXT           "登录人事管理系统",IDC_STATIC_LOGINTEXT,36,5,115,15
+    LTEXT           "ODBC数据源",IDC_STATIC,17,29,41,8
+    COMBOBOX        IDC_CMD_DSN,62,27,63,30,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "用户名",IDC_STATIC,33,46,25,8
+    LTEXT           "密码",IDC_STATIC,41,63,17,8
+END
+
+IDD_FORMVIEW_ADD DIALOG DISCARDABLE  0, 0, 183, 302
+STYLE WS_CHILD
+FONT 9, "宋体"
+BEGIN
+    LTEXT           "密码：",IDC_STATIC,35,31,25,8
+    LTEXT           "姓名：",IDC_STATIC,35,46,25,8
+    GROUPBOX        "性别：",IDC_STATIC,25,60,139,32
+    LTEXT           "生日：",IDC_STATIC,35,99,25,8
+    LTEXT           "部门：",IDC_STATIC,35,114,25,8
+    LTEXT           "职务：",IDC_STATIC,35,129,25,8
+    LTEXT           "受教育水平：",IDC_STATIC,11,144,49,8
+    EDITTEXT        IDC_ADD_EDT_ID,61,12,103,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "员工号：",IDC_STATIC,27,15,33,8
+    EDITTEXT        IDC_ADD_EDT_PASSWD,61,29,103,14,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    EDITTEXT        IDC_ADD_EDT_NAME,61,43,103,14,ES_AUTOHSCROLL
+    CONTROL         "男",IDC_ADD_RADIO_MALE,"Button",BS_AUTORADIOBUTTON,39,
+                    73,24,10
+    CONTROL         "女",IDC_ADD_RADIO_FEMALE,"Button",BS_AUTORADIOBUTTON,
+                    121,73,24,10
+    EDITTEXT        IDC_ADD_EDT_BIRTHDAY,61,95,103,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_ADD_CMB_DEPARTMENT,61,111,103,76,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_ADD_CMB_JOB,61,126,103,84,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_ADD_CMB_EDULEVEL,61,141,103,106,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "专业：",IDC_STATIC,35,159,25,8
+    EDITTEXT        IDC_ADD_EDT_SPECIALTY,61,156,103,14,ES_AUTOHSCROLL
+    LTEXT           "住址：",IDC_STATIC,35,175,25,8
+    EDITTEXT        IDC_ADD_EDT_ADDRESS,61,172,103,14,ES_AUTOHSCROLL
+    LTEXT           "电话：",IDC_STATIC,35,190,25,8
+    EDITTEXT        IDC_ADD_EDT_TEL,61,188,103,14,ES_AUTOHSCROLL
+    LTEXT           "E-mail：",IDC_STATIC,27,206,33,8
+    EDITTEXT        IDC_ADD_EDT_EMAIL,61,204,103,14,ES_AUTOHSCROLL
+    LTEXT           "备注：",IDC_STATIC,35,222,25,8
+    EDITTEXT        IDC_ADD_EDT_MEMO,17,233,148,39,ES_MULTILINE | 
+                    ES_AUTOHSCROLL
+    PUSHBUTTON      "增加",IDC_ADD_BTN_ADD,66,278,50,14
+END
+
+IDD_FORMVIEW_CHANGE DIALOG DISCARDABLE  0, 0, 185, 256
+STYLE WS_CHILD
+FONT 9, "宋体"
+BEGIN
+    LTEXT           "员工号：",IDC_STATIC,28,17,33,8
+    EDITTEXT        IDC_CHANGE_EDT_ID,62,13,94,14,ES_AUTOHSCROLL
+    GROUPBOX        "变动情况：",IDC_STATIC,25,34,139,32
+    CONTROL         "职务变更",IDC_CHANGE_RADIO_JOB,"Button",
+                    BS_AUTORADIOBUTTON,39,47,48,10
+    CONTROL         "辞职退休",IDC_CHANGE_RADIO_FIRE,"Button",
+                    BS_AUTORADIOBUTTON,106,47,48,10
+    LTEXT           "时间：",IDC_STATIC,36,73,25,8
+    CONTROL         "DateTimePicker1",IDC_CHANGE_DATETIMEPICKER,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,62,69,94,
+                    15
+    LTEXT           "姓名：",IDC_STATIC,36,104,25,8
+    LTEXT           "部门：",IDC_STATIC,36,119,25,8
+    LTEXT           "职务：",IDC_STATIC,36,134,25,8
+    EDITTEXT        IDC_CHANGE_EDT_NAME,62,101,94,14,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    COMBOBOX        IDC_CHANGE_CMB_DEPARTMENT,61,116,95,76,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_CHANGE_CMB_JOB,61,131,95,84,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "员工信息",IDC_STATIC,25,88,140,69
+    LTEXT           "具体描述：",IDC_STATIC,24,162,41,8
+    EDITTEXT        IDC_CHANGE_EDT_DESCRIPTION,25,172,140,53,ES_MULTILINE | 
+                    ES_AUTOHSCROLL
+    PUSHBUTTON      "修改",IDC_CHANGE_BTN_CHANGE,67,230,50,14
+END
+
+IDD_FORMVIEW_SEARCH DIALOG DISCARDABLE  0, 0, 313, 280
+STYLE WS_CHILD
+FONT 9, "宋体"
+BEGIN
+    LTEXT           "密码：",IDC_STATIC,149,14,25,8
+    LTEXT           "姓名：",IDC_STATIC,149,66,25,8
+    GROUPBOX        "性别：",IDC_STATIC,143,28,139,32
+    LTEXT           "生日：",IDC_STATIC,149,82,25,8
+    LTEXT           "部门：",IDC_STATIC,31,27,25,8
+    LTEXT           "职务：",IDC_STATIC,31,45,25,8
+    LTEXT           "受教育水平：",IDC_STATIC,7,60,49,8
+    EDITTEXT        IDC_SEARCH_EDT_ID,58,9,67,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SEARCH_EDT_PASSWD,175,9,68,14,ES_AUTOHSCROLL
+    LTEXT           "员工号：",IDC_STATIC,24,13,33,8
+    CONTROL         "男",IDC_SEARCH_RADIO_MALE,"Button",BS_AUTORADIOBUTTON,
+                    157,41,24,10
+    EDITTEXT        IDC_SEARCH_EDT_NAME,175,63,68,14,ES_AUTOHSCROLL
+    CONTROL         "女",IDC_SEARCH_RADIO_FEMALE,"Button",BS_AUTORADIOBUTTON,
+                    239,41,24,10
+    EDITTEXT        IDC_SEARCH_EDT_BIRTHDAY,175,78,68,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_SEARCH_CMB_DEPARTMENT,57,25,68,76,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_SEARCH_CMB_JOB,57,41,68,84,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_SEARCH_CMB_EDULEVEL,57,58,69,106,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "专业：",IDC_STATIC,31,77,25,8
+    EDITTEXT        IDC_SEARCH_EDT_SPECIALTY,57,73,69,14,ES_AUTOHSCROLL
+    LTEXT           "住址：",IDC_STATIC,149,98,25,8
+    EDITTEXT        IDC_SEARCH_EDT_ADDRESS,175,94,68,14,ES_AUTOHSCROLL
+    LTEXT           "电话：",IDC_STATIC,149,112,25,8
+    EDITTEXT        IDC_SEARCH_EDT_TEL,175,110,68,14,ES_AUTOHSCROLL
+    LTEXT           "E-mail：",IDC_STATIC,141,128,33,8
+    EDITTEXT        IDC_SEARCH_EDT_EMAIL,175,126,68,14,ES_AUTOHSCROLL
+    LTEXT           "备注：",IDC_STATIC,31,91,25,8
+    EDITTEXT        IDC_SEARCH_EDT_MEMO,16,101,111,39,ES_MULTILINE | 
+                    ES_AUTOHSCROLL
+    PUSHBUTTON      "修改员工信息",IDC_SEARCH_BTN_CHANGE,127,152,58,14
+    PUSHBUTTON      "修改密码",IDC_SEARCH_BTN_CHGPASSWD,247,9,50,14
+    CONTROL         "List1",IDC_SEARCH_LIST,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,13,183,281,84
+    LTEXT           "人事变动列表：",IDC_STATIC,17,167,57,8
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "zhaoliang Microsoft 基础类应用程序\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "zhaoliang\0"
+            VALUE "LegalCopyright", "版权所有 (C) 2002\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "zhaoliang.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "zhaoliang 应用程序\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        RIGHTMARGIN, 180
+        BOTTOMMARGIN, 116
+    END
+
+    IDD_DLG_LOGIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 162
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 101
+    END
+
+    IDD_FORMVIEW_ADD, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 176
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 295
+        HORZGUIDE, 107
+    END
+
+    IDD_FORMVIEW_CHANGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 178
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 249
+    END
+
+    IDD_FORMVIEW_SEARCH, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 306
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 273
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_DLG_LOGIN DLGINIT
+BEGIN
+    IDC_CMD_DSN, 0x403, 6, 0
+0x494d, 0x4453, 0x0042, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "人事管理系统"
+    IDR_PERSONTYPE          "\nPerson\nPerson"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "zhaoliang"
+    AFX_IDS_IDLEMESSAGE     "就绪"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_SYSTEM_CONNECT       "连接到服务器"
+    ID_MANAGE_ADD           "输入新员工的信息"
+    ID_SYSTEM_DISCONNECT    "断开当前连接"
+    ID_SYSTEM_EXIT          "关闭整个应用程序"
+    ID_MANAGER_CHANGE       "记录员工的职位变动"
+    ID_MANAGER_SEARCH       "查询修改员工信息"
+    ID_WINDOW_TILE_H        "水平排列窗口"
+    ID_WINDOW_TILE_V        "垂直排列窗口"
+    ID_WINDOW_MINIALL       "将所有窗口最小化"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_WINDOW_CASCADE       "重叠排列窗口"
+    ID_WINDOW_TILE_HORZ     "水平排列窗口"
+    ID_WINDOW_TILE_VERT     "垂直排列窗口"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INDICATOR_LOGIN      "尚未登录数据库!请按F2登录                                                  "
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "本程序的说明"
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE 4, 2
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\zhaoliang.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.chs\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

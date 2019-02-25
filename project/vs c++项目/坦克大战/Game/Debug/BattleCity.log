@@ -1,0 +1,76 @@
+﻿生成启动时间为 2017-05-06 01:30:13。
+     1>项目“D:\粤嵌\3.全日制\QT\参考项目\坦克大战\坦克大战\Game\BattleCity.vcxproj”在节点 2 上(build 个目标)。
+     1>InitializeBuildStatus:
+         正在创建“.\Debug\BattleCity.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _VC80_UPGRADE=0x0600 /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /Gy- /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug\\" /Fd".\Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Game.cpp Input.cpp Plane.cpp Sound.cpp Sprite.cpp wavread.cpp
+         wavread.cpp
+         Sprite.cpp
+         c:\program files (x86)\microsoft sdks\windows\v7.0a\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(455): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(456): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(460): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(460): error C2228: “.m_active”的左边必须有类/结构/联合
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(461): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(461): error C2228: “.m_speed”的左边必须有类/结构/联合
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(462): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(462): error C2228: “.m_dir”的左边必须有类/结构/联合
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(467): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(467): error C2228: “.m_x”的左边必须有类/结构/联合
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(468): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(468): error C2228: “.m_y”的左边必须有类/结构/联合
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(471): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(471): error C2228: “.m_x”的左边必须有类/结构/联合
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(472): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(472): error C2228: “.m_y”的左边必须有类/结构/联合
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(475): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(475): error C2228: “.m_x”的左边必须有类/结构/联合
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(476): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(476): error C2228: “.m_y”的左边必须有类/结构/联合
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(479): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(479): error C2228: “.m_x”的左边必须有类/结构/联合
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(480): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\sprite.cpp(480): error C2228: “.m_y”的左边必须有类/结构/联合
+         Sound.cpp
+         Plane.cpp
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\plane.cpp(32): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : 参见“fopen”的声明
+         Input.cpp
+         c:\program files (x86)\microsoft sdks\windows\v7.0a\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\input.cpp(31): error C3861: “DirectInputCreate”: 找不到标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\input.cpp(54): error C2065: “DIDEVTYPE_JOYSTICK”: 未声明的标识符
+         Game.cpp
+         c:\program files (x86)\microsoft sdks\windows\v7.0a\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(37): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : 参见“sprintf”的声明
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(353): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(353): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(353): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(354): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(354): error C2228: “.BitBlt”的左边必须有类/结构/联合
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(919): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(919): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(919): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(920): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(920): error C2228: “.Draw”的左边必须有类/结构/联合
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(927): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(927): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(927): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(929): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(930): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(1442): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(1442): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(1442): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(1443): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(1443): error C2228: “.Create”的左边必须有类/结构/联合
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(1489): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(1489): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(1489): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(1490): error C2065: “i”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\坦克大战\坦克大战\game\game.cpp(1490): error C2228: “.m_active”的左边必须有类/结构/联合
+         正在生成代码...
+     1>已完成生成项目“D:\粤嵌\3.全日制\QT\参考项目\坦克大战\坦克大战\Game\BattleCity.vcxproj”(build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:03.54

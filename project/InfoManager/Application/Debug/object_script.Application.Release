@@ -1,0 +1,12 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\StuManager.o
+./release\TeacherManager.o
+./release\createdb.o
+./release\addstudlg.o
+./release\moc_mainwindow.o
+./release\moc_StuManager.o
+./release\moc_TeacherManager.o
+./release\moc_addstudlg.o
+);

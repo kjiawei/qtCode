@@ -1,0 +1,54 @@
+﻿生成启动时间为 2017-05-06 01:28:58。
+     1>项目“D:\粤嵌\3.全日制\QT\参考项目\贪吃蛇源代码\贪吃蛇源代码\Snake.vcxproj”在节点 2 上(build 个目标)。
+     1>InitializeBuildStatus:
+         正在创建“.\Debug\Snake.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _VC80_UPGRADE=0x0600 /D _MBCS /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /Gy- /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp".\Debug\Snake.pch" /Fo".\Debug\\" /Fd".\Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt StdAfx.cpp
+         StdAfx.cpp
+         _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _VC80_UPGRADE=0x0600 /D _MBCS /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /Gy- /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp".\Debug\Snake.pch" /Fo".\Debug\\" /Fd".\Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt AboutDlg.cpp ChangeSpeedDlg.cpp main.cpp MainFrm.cpp ScoreBoardDlg.cpp Snake.cpp SnakeDoc.cpp SnakeGame.cpp SnakeView.cpp w95trace1.cpp
+         w95trace1.cpp
+     1>d:\粤嵌\3.全日制\qt\参考项目\贪吃蛇源代码\贪吃蛇源代码\w95trace1.cpp(19): warning C4005: “_countof”: 宏重定义
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdlib.h(344) : 参见“_countof”的前一个定义
+     1>d:\粤嵌\3.全日制\qt\参考项目\贪吃蛇源代码\贪吃蛇源代码\w95trace1.cpp(27): warning C4996: 'ctime': This function or variable may be unsafe. Consider using ctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\time.inl(86) : 参见“ctime”的声明
+     1>d:\粤嵌\3.全日制\qt\参考项目\贪吃蛇源代码\贪吃蛇源代码\w95trace1.cpp(40): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : 参见“strcpy”的声明
+     1>d:\粤嵌\3.全日制\qt\参考项目\贪吃蛇源代码\贪吃蛇源代码\w95trace1.cpp(41): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(110) : 参见“strcat”的声明
+     1>d:\粤嵌\3.全日制\qt\参考项目\贪吃蛇源代码\贪吃蛇源代码\w95trace1.cpp(42): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(110) : 参见“strcat”的声明
+     1>d:\粤嵌\3.全日制\qt\参考项目\贪吃蛇源代码\贪吃蛇源代码\w95trace1.cpp(47): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(105) : 参见“strcpy”的声明
+     1>d:\粤嵌\3.全日制\qt\参考项目\贪吃蛇源代码\贪吃蛇源代码\w95trace1.cpp(48): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(110) : 参见“strcat”的声明
+     1>d:\粤嵌\3.全日制\qt\参考项目\贪吃蛇源代码\贪吃蛇源代码\w95trace1.cpp(49): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(110) : 参见“strcat”的声明
+     1>d:\粤嵌\3.全日制\qt\参考项目\贪吃蛇源代码\贪吃蛇源代码\w95trace1.cpp(50): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(110) : 参见“strcat”的声明
+     1>d:\粤嵌\3.全日制\qt\参考项目\贪吃蛇源代码\贪吃蛇源代码\w95trace1.cpp(51): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\string.h(110) : 参见“strcat”的声明
+     1>d:\粤嵌\3.全日制\qt\参考项目\贪吃蛇源代码\贪吃蛇源代码\w95trace1.cpp(84): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : 参见“vsprintf”的声明
+     1>d:\粤嵌\3.全日制\qt\参考项目\贪吃蛇源代码\贪吃蛇源代码\w95trace1.cpp(86): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : 参见“vsprintf”的声明
+     1>d:\粤嵌\3.全日制\qt\参考项目\贪吃蛇源代码\贪吃蛇源代码\w95trace1.cpp(97): error C2065: “traceMultiApp”: 未声明的标识符
+     1>d:\粤嵌\3.全日制\qt\参考项目\贪吃蛇源代码\贪吃蛇源代码\w95trace1.cpp(443): error C2065: “WM_QUERY3DCONTROLS”: 未声明的标识符
+         SnakeView.cpp
+         SnakeGame.cpp
+     1>d:\粤嵌\3.全日制\qt\参考项目\贪吃蛇源代码\贪吃蛇源代码\snakegame.cpp(33): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+         SnakeDoc.cpp
+         Snake.cpp
+     1>d:\粤嵌\3.全日制\qt\参考项目\贪吃蛇源代码\贪吃蛇源代码\snake.cpp(58): warning C4996: 'CWinApp::Enable3dControls': CWinApp::Enable3dControls is no longer needed. You should remove this call.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\atlmfc\include\afxwin.h(5380) : 参见“CWinApp::Enable3dControls”的声明
+         ScoreBoardDlg.cpp
+         MainFrm.cpp
+         main.cpp
+         ChangeSpeedDlg.cpp
+         AboutDlg.cpp
+         正在生成代码...
+     1>已完成生成项目“D:\粤嵌\3.全日制\QT\参考项目\贪吃蛇源代码\贪吃蛇源代码\Snake.vcxproj”(build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:04.87

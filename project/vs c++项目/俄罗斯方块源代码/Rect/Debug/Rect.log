@@ -1,0 +1,43 @@
+﻿生成启动时间为 2017-05-06 01:25:41。
+     1>项目“D:\粤嵌\3.全日制\QT\参考项目\俄罗斯方块源代码\俄罗斯方块源代码\源代码\Rect\Rect.vcxproj”在节点 2 上(build 个目标)。
+     1>InitializeBuildStatus:
+         正在对“.\Debug\Rect.unsuccessfulbuild”执行 Touch 任务。
+       ClCompile:
+         所有输出均为最新。
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _VC80_UPGRADE=0x0600 /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /Gy- /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp".\Debug\Rect.pch" /Fo".\Debug\\" /Fd".\Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Diamond.cpp MainFrm.cpp Matrix.cpp Rect.cpp RectDoc.cpp RectView.cpp
+         正在跳过...(未检测到相关更改)
+         RectView.cpp
+         RectDoc.cpp
+         Rect.cpp
+         Matrix.cpp
+         MainFrm.cpp
+         Diamond.cpp
+       ResourceCompile:
+         所有输出均为最新。
+       ManifestResourceCompile:
+         所有输出均为最新。
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:".\Debug\Rect.exe" /INCREMENTAL /NOLOGO winmm.lib /MANIFEST /ManifestFile:".\Debug\Rect.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\粤嵌\3.全日制\QT\参考项目\俄罗斯方块源代码\俄罗斯方块源代码\源代码\Rect\Debug\Rect.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\Debug\Rect.lib" /MACHINE:X86 .\Debug\Rect.res
+         .\Debug\Rect.exe.embed.manifest.res
+         .\Debug\Diamond.obj
+         .\Debug\MainFrm.obj
+         .\Debug\Matrix.obj
+         .\Debug\Rect.obj
+         .\Debug\RectDoc.obj
+         .\Debug\RectView.obj
+         .\Debug\StdAfx.obj
+         LINK : 没有找到 .\Debug\Rect.exe 或上一个增量链接没有生成它；正在执行完全链接
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:".\Debug\Rect.exe.embed.manifest" /manifest .\Debug\Rect.exe.intermediate.manifest "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\Include\Manifest\dpiaware.manifest"
+         所有输出均为最新。
+       LinkEmbedManifest:
+         所有输出均为最新。
+         Rect.vcxproj -> D:\粤嵌\3.全日制\QT\参考项目\俄罗斯方块源代码\俄罗斯方块源代码\源代码\Rect\.\Debug\Rect.exe
+       FinalizeBuildStatus:
+         正在删除文件“.\Debug\Rect.unsuccessfulbuild”。
+         正在对“.\Debug\Rect.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“D:\粤嵌\3.全日制\QT\参考项目\俄罗斯方块源代码\俄罗斯方块源代码\源代码\Rect\Rect.vcxproj”(build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:02.71

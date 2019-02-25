@@ -1,0 +1,12 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\StuManager.o
+./debug\TeacherManager.o
+./debug\createdb.o
+./debug\addstudlg.o
+./debug\moc_mainwindow.o
+./debug\moc_StuManager.o
+./debug\moc_TeacherManager.o
+./debug\moc_addstudlg.o
+);

@@ -1,0 +1,239 @@
+#include <stdio.h>
+#include <conio.h>
+#include <string.h>
+#include <ctype.h>
+#include <time.h>
+										//利用结构可以返回多个变量值
+struct DATA
+	{
+	int	totalcharactors;						//计算字符总数
+	int	totalrights;							//计算正确字符总数
+	float	totaltime;							//输入总时间
+	};
+
+struct	DATA a,B;
+FILE	*stream;
+
+struct	DATA	displaytext(int Edition_ID);					//在声明返回结构类型的函数时，不要漏了关键字struct
+int	userinput();
+int	Select_Edition();
+void	beginpractise(int Edi_ID);
+
+
+main()
+{
+	int EditionID = 0;		
+
+	EditionID = Select_Edition();						//由用户选择程序版本
+	beginpractise(EditionID);						//使用用户选择的版本并开始练习
+}
+
+/*
+ * 此函数用于决定是否开始练习，是则练习，没有返回值，没有参数。
+ * 2004.5.6  成功测试
+ *
+ */
+void beginpractise(int Edi_ID)
+{
+	int		charnum = 0;
+	int		practise;						//决定是否开始练习
+	int		Edition_ID = Edi_ID;					//获得用户选择的程序版本
+	float		accuracy;						//用户输入正确率
+	
+
+restart:
+	if (Edition_ID == '0')
+		{
+		printf("按Y开始练习，按N退出\n");				//语言选择	
+		}
+	else	{
+		printf("press Y to practise,press N to leave:");		//如果用#if...#else...#endif只有(#endif代码段)被编绎
+		}
+										//language selection
+	practise = getch();
+	putch(practise);
+	putchar('\n');
+	if((toupper(practise)) == 'Y')
+		{
+		B = displaytext(Edition_ID);					//用户选择文件长开始练习
+		accuracy =  (float)B.totalrights / (float)B.totalcharactors;
+		accuracy *= 100;
+		if(Edition_ID == '1')
+			{							//language selection
+			printf("the total charactors you input is:%d\n", B.totalcharactors);	
+			printf("                the total time is:%4.3fsec\n", B.totaltime);
+			printf("              your input speed is:%2.1f charactors/sec\n", 
+				(float)B.totalcharactors / B.totaltime);
+			printf("    the accuracy of your input is:%4.2f", accuracy);
+			}
+		else	{
+			printf("您输入的总字符数是：%d\n", B.totalcharactors);
+			printf("	输入总时间：%4.3fsec\n", B.totaltime);
+			printf("    您输入的速度为：%2.1f charactors/sec\n", (float)B.totalcharactors / B.totaltime);
+			printf("  您输入的正确率为:%4.2f", accuracy);
+			}
+		putchar('%');							//用printf()不能打印'%',只能用putchar();
+		printf("\n\a");
+		getch();
+		}
+	else if(toupper(practise) == 'N')
+		{
+		if(Edition_ID == '1')
+			{
+			printf("You are lazy!\n");				//language selection
+			}
+		else	{
+			printf("懒人王!\n");					//语言选择
+			}
+		}
+	else	{
+		if(Edition_ID == '1')
+			{
+			printf("You are careless!\n");				//language selection
+			}
+		else	{
+			printf("粗枝大叶!\n");					
+			}
+		goto restart;							
+		}
+}
+
+/* 此函数用于：选择文件并打开文件，
+ * 返回：一个结构 data，得到totalcharacors, totalrights, totaltime
+ * 参数：Edition_ID ,由用户指定程序版本号
+ */
+
+struct DATA displaytext(int Edition_ID)
+{
+	char	array[100], textfilename[20];
+	int	result, charnum = 0, ch, right = 0, n;
+	clock_t	start, finish;
+	float	period;
+
+repeat:
+	printf("1.txt               2.txt              3.txt\n");
+	printf("4.txt               5.txt              6.txt\n");
+	
+	if (Edition_ID == '1')							//language seclection
+		{
+		printf("please input the text file name you want:");
+		}
+	else	{
+		printf("请输入您想要进行练习的文件名：\n");			//语言选择
+		}
+	do	{
+		if(Edition_ID == '1')
+			{
+			printf("please select(1-6):");				//这样可以避免按下回车键出现异常
+			}							//language seclection
+		else	{
+			printf("请选择(1-6):");					//语言选择
+			}
+		ch = getch();
+		putch(ch);
+		}while(ch < '1'|| ch > '6');
+	printf("\n\n");
+										//作出选择用来练习的文件
+	switch(ch)
+		{	
+		case '1':
+			strcpy(textfilename, "1.txt\0");
+			break;
+		case '2':
+			strcpy(textfilename, "2.txt");
+			break;
+		case '3':
+			strcpy(textfilename, "3.txt");
+			break;
+		case '4':
+			strcpy(textfilename, "4.txt");
+			break;
+		case '5':
+			strcpy(textfilename, "5.txt");
+			break;
+		case '6':
+			strcpy(textfilename, "6.txt");
+			break;
+		default:
+			break;
+		}
+	if(Edition_ID == '1')
+		{
+		printf("the file you want to open is:%s\n", textfilename);	//language selection
+		}
+	else	{
+		printf("你想要打开的文件是：%s\n", textfilename);		//语言选择
+		}
+	if((stream = fopen(textfilename, "r")) != NULL)
+		{
+		start = clock();						//开始计时
+		while((result = strcmp((fgets(array, 100, stream)),
+			"0x001B")) != 0)					//不到文件末尾则循环
+			{
+			printf("%s", array);					//若从此处开始计时，
+										//则每次只计算输入一行所花的时间
+			n = 0;
+			while(array[n] != '\0')
+				{
+				if(array[n] ==	userinput())
+					{
+					right++;				//计算每行输入正确字符数		
+					}
+				n++;						//计算输入字符总数
+				}
+			charnum += n;
+			}
+			finish = clock();					//计时结束
+			period= (float)(finish-start) / CLOCKS_PER_SEC;		//计算总时间
+		}
+	else	{
+		if(Edition_ID == '1')						//language selection
+			{
+			printf("file doesn't exist in the disk!\n");
+			}
+		else	{
+			printf("文件不存在!\n");				//语言选择
+			}
+		goto repeat;							//重新输入文件名
+		}
+	fclose(stream);								//关闭流
+	a.totalcharactors	=	charnum;
+	a.totalrights		=	right;
+	a.totaltime		=	period;
+
+	return a;
+}	//返回一个结构，有三个变量，一是字符总数，二是正确字符数,三是耗时
+
+/* 此函数用于读取用户的输入，返回输入的字符，没有参数
+ * 2004.5.6  成功测试
+ */
+
+int userinput()
+{
+	int	j;
+
+	j = getchar();
+	return j;
+}
+
+/* 此函数用于决定你将使用程序的什么版本，它返回0，则是中文版，1则是英文版
+ * 没有参数
+ */
+
+int Select_Edition()
+{
+	int ch = 0;
+
+	do	{
+		printf("	0 简体中文		1 English Edition\n");
+		ch = getch();
+		putch(ch);
+		}while(ch != '0' && ch != '1');
+
+	return ch;
+}
+////////////////////////////////////////////////////////////////////////////////
+//
+//           生成的exe文件没有机会停下来看，所以在生成之前，必须加上语句：
+//            getch();
+///////////////////////////////////////////////////////////////////////////////

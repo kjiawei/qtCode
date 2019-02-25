@@ -1,0 +1,422 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (Taiwan) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
+#pragma code_page(950)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 1\r\n"
+    "#pragma code_page(950)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\Snake.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.cht\\afxres.rc""          // Standard components\r\n"
+    "#include ""l.cht\\afxprint.rc""        // printing/print preview resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Snake.ico"
+IDR_SNAKETYPE           ICON    DISCARDABLE     "res\\SnakeDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\Toolbar.bmp"
+IDB_BRICK               BITMAP  DISCARDABLE     "res\\brick.bmp"
+IDB_CELL                BITMAP  DISCARDABLE     "res\\cell.bmp"
+IDB_SCOREBOARD          BITMAP  DISCARDABLE     "res\\scoreboard.BMP"
+IDB_BODY                BITMAP  DISCARDABLE     "res\\body.bmp"
+IDB_FLOWER              BITMAP  DISCARDABLE     "res\\flower.bmp"
+IDB_FRUIT               BITMAP  DISCARDABLE     "res\\fruit.bmp"
+IDB_HEADDOWNCLOSE       BITMAP  DISCARDABLE     "res\\head_down_close.bmp"
+IDB_HEADDOWNOPEN        BITMAP  DISCARDABLE     "res\\head_down_open.bmp"
+IDB_HEADLEFTCLOSE       BITMAP  DISCARDABLE     "res\\head_left_close.bmp"
+IDB_HEADLEFTOPEN        BITMAP  DISCARDABLE     "res\\head_left_open.bmp"
+IDB_HEADRIGHTCLOSE      BITMAP  DISCARDABLE     "res\\head_right_close.bmp"
+IDB_HEADRIGHTOPEN       BITMAP  DISCARDABLE     "res\\head_right_open.bmp"
+IDB_HEADUPCLOSE         BITMAP  DISCARDABLE     "res\\head_up_close.bmp"
+IDB_HEADUPOPEN          BITMAP  DISCARDABLE     "res\\head_up_open.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "menu"
+    BEGIN
+        MENUITEM "更改速度",                    IDM_CHANGELEVEL
+        MENUITEM "程式說明",                    ID_APP_ABOUT
+        MENUITEM SEPARATOR
+        MENUITEM "結束(&X)",                    ID_APP_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+BEGIN
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 61
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "關於 Snake"
+FONT 9, "新細明體"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "Snake Version 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2003",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "確定",IDOK,178,7,50,14,WS_GROUP
+    LTEXT           "NTOUCS C++ Assignment 4",IDC_STATIC,40,41,119,8
+END
+
+IDD_SCOREBOARD DIALOG DISCARDABLE  0, 0, 188, 123
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "計分版"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "關閉",IDOK,67,102,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,131,102,50,14,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT_SCORES,7,7,174,92,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_AUTOHSCROLL | ES_READONLY
+END
+
+IDD_CHANGESPEEDDLG DIALOG DISCARDABLE  0, 0, 188, 45
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "更改速度"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "確定",IDOK,131,7,50,14
+    PUSHBUTTON      "取消",IDCANCEL,131,23,50,14
+    LTEXT           "速度:",IDC_STATIC,24,17,19,8
+    EDITTEXT        IDC_EDIT_SPEED,56,15,28,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_SPIN,"msctls_updown32",UDS_SETBUDDYINT | 
+                    UDS_AUTOBUDDY | UDS_ARROWKEYS,84,15,10,14
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040404B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "Snake MFC Application\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "Snake\0"
+            VALUE "LegalCopyright", "Copyright (C) 2003\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "Snake.EXE\0"
+            VALUE "ProductName", "Snake Application\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x404, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 54
+    END
+
+    IDD_SCOREBOARD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 181
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 116
+    END
+
+    IDD_CHANGESPEEDDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 181
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 37
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "Snake\n\nSnake\n\n\nSnake.Document\nSnake Document"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "Snake"
+    AFX_IDS_IDLEMESSAGE     "就緒"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_NEW             "產生一新文件\n開啟新檔"
+    ID_FILE_OPEN            "開啟一舊文件\n開啟舊檔"
+    ID_FILE_CLOSE           "關閉目前的文件\n關閉"
+    ID_FILE_SAVE            "儲存目前的文件\n儲存檔案"
+    ID_FILE_SAVE_AS         "另外用一新名稱儲存目前的文件\n另存新檔"
+    ID_FILE_PAGE_SETUP      "改變列印選項\n版面設定"
+    ID_FILE_PRINT_SETUP     "改變印表機和列印選項\n列印設定"
+    ID_FILE_PRINT           "列印目前的文件\n列印"
+    ID_FILE_PRINT_PREVIEW   "顯示整頁\n預覽列印"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "顯示程式的資訊， 版本及版權\n關於"
+    ID_APP_EXIT             "結束應用程式並提示儲存檔案\n結束"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "開啟這個文件"
+    ID_FILE_MRU_FILE2       "開啟這個文件"
+    ID_FILE_MRU_FILE3       "開啟這個文件"
+    ID_FILE_MRU_FILE4       "開啟這個文件"
+    ID_FILE_MRU_FILE5       "開啟這個文件"
+    ID_FILE_MRU_FILE6       "開啟這個文件"
+    ID_FILE_MRU_FILE7       "開啟這個文件"
+    ID_FILE_MRU_FILE8       "開啟這個文件"
+    ID_FILE_MRU_FILE9       "開啟這個文件"
+    ID_FILE_MRU_FILE10      "開啟這個文件"
+    ID_FILE_MRU_FILE11      "開啟這個文件"
+    ID_FILE_MRU_FILE12      "開啟這個文件"
+    ID_FILE_MRU_FILE13      "開啟這個文件"
+    ID_FILE_MRU_FILE14      "開啟這個文件"
+    ID_FILE_MRU_FILE15      "開啟這個文件"
+    ID_FILE_MRU_FILE16      "開啟這個文件"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NEXT_PANE            "切換到下一個窗格\n下一個窗格"
+    ID_PREV_PANE            "切換到上一個窗格\n上一個窗格"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "分割目前的視窗\n分割"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_CLEAR           "刪除選取內容\n刪除"
+    ID_EDIT_CLEAR_ALL       "全部刪除\n全部刪除"
+    ID_EDIT_COPY            "複製選取內容到剪貼簿中\n複製"
+    ID_EDIT_CUT             "剪下選取內容到剪貼簿中\n剪下"
+    ID_EDIT_FIND            "尋找指定文字\n尋找"
+    ID_EDIT_PASTE           "插入剪貼簿內容\n貼上"
+    ID_EDIT_REPEAT          "重複前一動作\n重複"
+    ID_EDIT_REPLACE         "以不同文字取代指定之文字\n取代"
+    ID_EDIT_SELECT_ALL      "選取整篇文件\n選取全部"
+    ID_EDIT_UNDO            "復原上一次動作\n復原"
+    ID_EDIT_REDO            "重做前一個復原的動作\n重做"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "隱藏或顯示工具列\n切換工具列"
+    ID_VIEW_STATUS_BAR      "隱藏或顯示狀態列\n切換狀態列"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "改變視窗大小"
+    AFX_IDS_SCMOVE          "改變視窗位置"
+    AFX_IDS_SCMINIMIZE      "縮小視窗到一圖示"
+    AFX_IDS_SCMAXIMIZE      "放大視窗到全螢幕"
+    AFX_IDS_SCNEXTWINDOW    "切換到下一個文件視窗"
+    AFX_IDS_SCPREVWINDOW    "切換到前一個文件視窗"
+    AFX_IDS_SCCLOSE         "關閉工作中視窗並提示儲存文件"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "還原視窗至原來大小"
+    AFX_IDS_SCTASKLIST      "叫出「工作列」"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "關閉「預覽列印」模式\n取消預覽"
+END
+
+#endif    // Chinese (Taiwan) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
+#ifdef _WIN32
+LANGUAGE 4, 1
+#pragma code_page(950)
+#endif //_WIN32
+#include "res\Snake.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.cht\afxres.rc"          // Standard components
+#include "l.cht\afxprint.rc"        // printing/print preview resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

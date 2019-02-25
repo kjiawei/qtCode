@@ -1,0 +1,154 @@
+#include <iostream>
+#include <fstream>//保存信息到本地文件
+#include <list>
+#include <map>
+
+//程序设计思路:查询学生成绩(目的)
+//数据模型:list容器
+//函数功能与主逻辑实现:增删查改 文件处理扩展 排序
+
+//学生成绩管理系统
+using namespace std;
+
+class Date
+{
+public:
+    Date(int &date);
+    ~Date();
+    void showDate()
+    {
+        //cout<<"date:"<<date<<endl;
+    }
+private:
+    int year;
+    int month;
+    int date;
+};
+
+//template<typename T1,typename T2,typename T3,typename T4,typename T5>
+//插入学生信息函数模板
+
+//学生类
+class Student
+{
+public:
+    Student(string name,float score);
+    //~Student();
+    void showStudent(string name);
+    void showScore(string name);//const &会改变实参
+    bool insertInfo(/*const string &name,int pid,int sex,float score,int grade*/);
+    bool deleteInfo();
+    bool updateInfo();
+    void pjScore();
+    void totalScore();
+    void showHelp();
+    void tongji();
+    void exitSys();
+    void sortScore();//按分数排序
+protected:
+
+private:
+    string name;//名字
+    //string address;//地址
+    int pid;//学号
+    //int birthdate;//生日
+    int sex;//性别
+    float score;//分数
+    int grade;//年级
+    string className;//课程
+};
+
+Student::Student(string name = "123",float score = 0.0)
+{
+    cout<<"************学生成绩管理系统*************"<<endl;
+    cout<<"  输入信息(i)  "<<" 查询成绩(s)  "<<"  帮助(h)"<<endl;//cout格式控制
+    cout<<"  删除信息(w)  "<<" 平均成绩(p)  "<<"人数统计(r)"<<endl;
+    cout<<"  修改信息(c)  "<<" 总分成绩(t)  "<<"退出系统(q)"<<endl;
+    cout<<"****************************************"<<endl;
+
+    this->name = name;
+    this->score = score;
+}
+
+bool Student::insertInfo(/*const string &name,int pid,int sex,float score,int grade*/)
+{
+    cout<<"请输入学生信息(名字,学号,性别,分数,年级),ok结束:"<<endl;
+    string stuinfo;
+    //string student[];//学生详细信息不同类型如何处理
+    while(stuinfo != "ok")
+    {
+        cin>>stuinfo;
+//        this->name = name;
+//        this->pid = pid;
+//        this->sex = sex;
+//        this->score = score;
+//        this->grade = grade;
+    }
+    return true;
+}
+
+void Student::showStudent(string name)
+{
+    cout<<"name:"<<name<<endl;
+    cout<<"grade:"<<grade<<endl;
+    cout<<"sex:"<<sex<<endl;
+}
+
+void Student::showScore(string name)
+{
+    cout<<"score:"<<score<<endl;
+    //return score;
+}
+
+//Date::Date(int &date)
+//{
+//    this->date = date;
+//}
+
+int main()
+{
+    //数据的获取:输入 本地文件
+//    ifstream file;
+//    char stubuf[200];//存放学生信息的数组
+//    file.open("E:/qtProject/test/student.txt");
+//    while(!file.eof)
+//    {
+//        file.getline(buf,100);
+//        string str = buf;
+//        str.find(" ");//空格为每条记录的分割符
+//        //未完善
+//    }
+//    file.close();
+
+    //string stuinfo;//学生信息
+    //cin>>stuinfo;
+    //while(stuinfo != ("quit"|"q"))
+
+    //对学生数据的操作
+    Student stu/*("jerry",12.2)*/;//创建一个学生  list
+//    Student stu2("jerry2",12.3);
+//    stu.showScore("jerry");
+//    stu2.showScore("jerry2");
+
+    map<string,float> studentmap;//学生对象容器:名字与学号映射
+    //Pair<map<string,int>::iterator,bool>Insert_Pair; 判断能否成功插入
+    /*Insert_Pair = */studentmap.insert(pair<string,float>("xiaoxin",60.0));//不能重复数据
+
+    //studentmap.size();可统计插入数据的多少
+
+    //studentmap[6]="xiaoxin"; 数组方式插入 可以覆盖数据
+    map<string,float>::iterator iter;//map迭代器
+    for(iter = studentmap.begin();iter != studentmap.end();iter++)
+    //反相迭代器for(iter = studentmap.rbegin();iter != studentmap.rend();iter++)
+    {
+        cout<<"student name:"<<iter->first<<endl;
+        cout<<"student score:"<<iter->second<<endl;//查找count find lower_bound[判定数据是否出现,返回要查找关键字的下界(是一个迭代器)]
+        //数据清空clear 判断empty 擦除erase 成片:earse(mapStudent.begin(), mapStudent.end())
+        //swap,key_comp,value_comp,get_allocator等函数用得不多
+
+        //排序:重载<  仿函数
+    }
+
+    return 0;
+}
+

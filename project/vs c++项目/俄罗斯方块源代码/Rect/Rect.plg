@@ -1,0 +1,60 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Rect - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x804 /fo"Debug/Rect.res" /d "_DEBUG" "F:\VC++专区\游戏源代码（多组）\俄罗斯方块\Rect2\源代码\Rect\Rect.rc"" 
+Creating temporary file "D:\DOCUME~1\靳志强\LOCALS~1\Temp\RSP7.tmp" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Debug/Rect.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\VC++专区\游戏源代码（多组）\俄罗斯方块\Rect2\源代码\Rect\Diamond.cpp"
+"F:\VC++专区\游戏源代码（多组）\俄罗斯方块\Rect2\源代码\Rect\MainFrm.cpp"
+"F:\VC++专区\游戏源代码（多组）\俄罗斯方块\Rect2\源代码\Rect\Matrix.cpp"
+"F:\VC++专区\游戏源代码（多组）\俄罗斯方块\Rect2\源代码\Rect\Rect.cpp"
+"F:\VC++专区\游戏源代码（多组）\俄罗斯方块\Rect2\源代码\Rect\RectDoc.cpp"
+"F:\VC++专区\游戏源代码（多组）\俄罗斯方块\Rect2\源代码\Rect\RectView.cpp"
+]
+Creating command line "cl.exe @"D:\DOCUME~1\靳志强\LOCALS~1\Temp\RSP7.tmp"" 
+Creating temporary file "D:\DOCUME~1\靳志强\LOCALS~1\Temp\RSP8.tmp" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Debug/Rect.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\VC++专区\游戏源代码（多组）\俄罗斯方块\Rect2\源代码\Rect\StdAfx.cpp"
+]
+Creating command line "cl.exe @"D:\DOCUME~1\靳志强\LOCALS~1\Temp\RSP8.tmp"" 
+Creating temporary file "D:\DOCUME~1\靳志强\LOCALS~1\Temp\RSP9.tmp" with contents
+[
+winmm.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/Rect.pdb" /debug /machine:I386 /out:"Debug/Rect.exe" /pdbtype:sept 
+".\Debug\Diamond.obj"
+".\Debug\MainFrm.obj"
+".\Debug\Matrix.obj"
+".\Debug\Rect.obj"
+".\Debug\RectDoc.obj"
+".\Debug\RectView.obj"
+".\Debug\StdAfx.obj"
+".\Debug\Rect.res"
+]
+Creating command line "link.exe @"D:\DOCUME~1\靳志强\LOCALS~1\Temp\RSP9.tmp""
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+Diamond.cpp
+MainFrm.cpp
+Matrix.cpp
+Rect.cpp
+RectDoc.cpp
+RectView.cpp
+Generating Code...
+Linking...
+
+
+
+<h3>Results</h3>
+Rect.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

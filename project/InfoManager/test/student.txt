@@ -1,0 +1,5 @@
+xiaoming 1 1 20 3 yuwen
+xiaoqiang 2 2 70 3 yingyu
+xiaohong 3 1 68 5 tiyu
+xiaoyue 4 2 25 1 shuxue
+xiaoling 5 1 90 2 yuwen

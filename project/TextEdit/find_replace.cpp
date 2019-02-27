@@ -1,9 +1,7 @@
 #include "find_replace.h"
 #include "ui_find_replace.h"
 
-Find_Replace::Find_Replace(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::Find_Replace)
+Find_Replace::Find_Replace(QWidget *parent) :QDialog(parent),ui(new Ui::Find_Replace)
 {
     ui->setupUi(this);
     this->setFixedSize(420,160);//固定大小
@@ -18,8 +16,6 @@ Find_Replace::Find_Replace(QWidget *parent) :
 
     ui->pushButtonReplace->setEnabled(!ui->lineEditR->text().isEmpty());
     ui->pushButtonReplaceAll->setEnabled(!ui->lineEditR->text().isEmpty());
-
-
 }
 
 Find_Replace::~Find_Replace()
@@ -34,18 +30,14 @@ void Find_Replace::changeEvent(QEvent *e)
     case QEvent::LanguageChange:
         ui->retranslateUi(this);
         break;
-    default:
-        break;
+    default:break;
     }
 }
 
 void Find_Replace::button_Enabed()//判断“查找下一个”等等按钮是否可用
 {
     ui->nextButtonF->setEnabled(!ui->lineEditF->text().isEmpty());
-
     ui->nextButtonR->setEnabled(!ui->lineEditR->text().isEmpty());
-
     ui->pushButtonReplace->setEnabled(!ui->lineEditR->text().isEmpty());
-
     ui->pushButtonReplaceAll->setEnabled(!ui->lineEditR->text().isEmpty());
 }

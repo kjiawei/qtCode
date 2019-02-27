@@ -14,14 +14,13 @@ MdiChild::MdiChild()
     this->setWordWrapMode(QTextOption::WrapAnywhere);//设为自动换行
     this->setAttribute(Qt::WA_DeleteOnClose);//在窗口关闭的同时销毁它
     isUntitled = true;//未命名
-    connect(document(), SIGNAL(contentsChanged()),
-            this, SLOT(documentWasModified()));
+    connect(document(), SIGNAL(contentsChanged()),this, SLOT(documentWasModified()));
 
     QPalette palette = this->palette();//更改调色板，使查找时能高亮显示找到的内容
     palette.setColor(QPalette::Highlight,palette.color(QPalette::Active,QPalette::Highlight));
     this->setPalette(palette);
 
-     /**自定义的右键菜单项目**/
+    /**自定义的右键菜单项目**/
     actUndo = new QAction(QIcon(":/images/undo.png"),tr("撤销"),this);
     actUndo->setShortcuts(QKeySequence::Undo);
     actUndo->setEnabled(this->document()->isUndoAvailable());
@@ -66,17 +65,14 @@ MdiChild::MdiChild()
 
     actFontColor = new QAction(QIcon(":/images/textcolor.png"),tr("字体颜色"),this);
     connect(actFontColor,SIGNAL(triggered()),this,SIGNAL(fontColor()));
-
 }
 
 void MdiChild::newFile()//新建
 {
     static int sequenceNumber = 1;//文档序列号
-
     isUntitled = true;
     curFile = tr("无标题%1").arg(sequenceNumber++);
     setWindowTitle(curFile + "[*]");
-
 }
 
 bool MdiChild::loadFile(const QString &fileName)//读取文件
@@ -92,11 +88,9 @@ bool MdiChild::loadFile(const QString &fileName)//读取文件
     QTextStream in(&file);
     QApplication::setOverrideCursor(Qt::WaitCursor);
     this->setText(in.readAll());
-   //  this->setHtml(in.readAll());
+    //  this->setHtml(in.readAll());
     QApplication::restoreOverrideCursor();
-
     setCurrentFile(fileName);
-
     return true;
 }
 
@@ -112,11 +106,8 @@ bool MdiChild::save()
 bool MdiChild::saveAs()
 {
     QString fileName = QFileDialog::getSaveFileName(
-            this,tr("另存为"),curFile,"(*.txt)"";;All File(*.*)");
-
-    if (fileName.isEmpty())
-        return false;
-
+                this,tr("另存为"),curFile,"(*.txt)"";;All File(*.*)");
+    if(fileName.isEmpty()) return false;
     return saveFile(fileName);
 }
 
@@ -158,10 +149,10 @@ bool MdiChild::maybeSave()//是否保存
     if (this->document()->isModified()) {
         QMessageBox::StandardButton ret;
         ret = QMessageBox::warning(this, tr("警告"),
-                     tr("'%1'内容已修改但尚未保存，是否保存？")
-                     .arg(curFile),
-                     QMessageBox::Save | QMessageBox::Discard
-                     | QMessageBox::Cancel);
+                                   tr("'%1'内容已修改但尚未保存，是否保存？")
+                                   .arg(curFile),
+                                   QMessageBox::Save | QMessageBox::Discard
+                                   | QMessageBox::Cancel);
         if (ret == QMessageBox::Save)
             return save();
         else if (ret == QMessageBox::Cancel)
@@ -193,7 +184,6 @@ void MdiChild::contextMenuEvent(QContextMenuEvent *event)//重写右键菜单事
     menu.addSeparator();
     menu.addAction(actFontChang);
     menu.addAction(actFontColor);
-
     menu.exec(event->globalPos());
 }
 
@@ -202,16 +192,15 @@ void MdiChild::wheelEvent(QWheelEvent *e)//重写鼠标滚轮事件，实现按�
     if (QApplication::keyboardModifiers() == Qt::ControlModifier)//是否按下Ctrl键
     {
         if(e->delta() > 0 )//上滚
-                this->zoomIn(1);//放大
-            else
-                this->zoomOut(1);
+            this->zoomIn(1);//放大
+        else
+            this->zoomOut(1);
     }
     else//实现文本的上下滚动
     {
-         if(e->delta() > 0 )//上滚
-             this->verticalScrollBar()->setValue(this->verticalScrollBar()->value()-25);
-         else
-             this->verticalScrollBar()->setValue(this->verticalScrollBar()->value()+25);
-
+        if(e->delta() > 0 )//上滚
+            this->verticalScrollBar()->setValue(this->verticalScrollBar()->value()-25);
+        else
+            this->verticalScrollBar()->setValue(this->verticalScrollBar()->value()+25);
     }
 }

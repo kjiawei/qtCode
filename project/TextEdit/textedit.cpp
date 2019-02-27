@@ -19,9 +19,9 @@ TextEdit::TextEdit(QWidget *parent) :
     ui->setupUi(this);
     this->setAcceptDrops(true);
 
-   // Q_FOREACH (QTabBar* tab, ui->mdiArea->findChildren())//QMdiArea tabs with close button
-   // {
-       //QTabBar* tab;
+    // Q_FOREACH (QTabBar* tab, ui->mdiArea->findChildren())//QMdiArea tabs with close button
+    // {
+    //QTabBar* tab;
     //   tab->setTabsClosable(true);
     //   connect(tab, SIGNAL(tabCloseRequested(int)),
     //              this, SLOT(closeTab(int)));
@@ -37,11 +37,13 @@ TextEdit::TextEdit(QWidget *parent) :
     connect(findReplace->ui->pushButtonReplaceAll,SIGNAL(clicked()),this,SLOT(replaceAll()));
 
     readSettings();//读取上次关闭窗口时窗口的大小与位置
-    this->setCentralWidget(ui->mdiArea);//将多文档区部件设为中心部件
+    //this->setCentralWidget(ui->mdiArea);//将多文档区部件设为中心部件 限定只能显示主要控件
+
+    videoViewInit();//
 
     ui->mdiArea->setViewMode(QMdiArea::TabbedView);//设为标签栏显示模式
     connect(ui->mdiArea, SIGNAL(subWindowActivated(QMdiSubWindow*)),
-            this, SLOT(updateMenus())); 
+            this, SLOT(updateMenus()));
 
     QTimer *timer = new QTimer(this);//新建定时器
     connect(timer,SIGNAL(timeout()),this,SLOT(timerUpDate()));//关联定时器计满信号和相应的槽函数
@@ -117,6 +119,14 @@ TextEdit::~TextEdit()
     delete ui;
 }
 
+void TextEdit::videoViewInit()
+{
+    videoIsPlaying=0;
+    ui->videoWidget->setStyleSheet("background-color:black;");
+    playerTimer = new QTimer;
+    connect(playerTimer,SIGNAL(timeout()),this,SLOT(playerTime()));
+}
+
 void TextEdit::changeEvent(QEvent *e)
 {
     QMainWindow::changeEvent(e);
@@ -164,9 +174,9 @@ void TextEdit::openRecentFile()//打开最近文件列表指定文件
             ui->mdiArea->addSubWindow(child);
             if(child->loadFile(action->data().toString()))
             {
-               child->setVisible(true);
-               second_statusLabel->setText(tr("打开成功"));
-               iniConnect();//初始化关联             
+                child->setVisible(true);
+                second_statusLabel->setText(tr("打开成功"));
+                iniConnect();//初始化关联
             }
         }
     }
@@ -219,7 +229,7 @@ void TextEdit::updateMenus()//更新菜单栏和标题的显示状态等
     second_statusLabel->setText(hasMdiChild? second_statusLabel->text():tr("yafeilinux制作"));
 
     bool hasSelection = (activeMdiChild() &&
-                             activeMdiChild()->textCursor().hasSelection());
+                         activeMdiChild()->textCursor().hasSelection());
     ui->action_Copy->setEnabled(hasSelection);
     ui->action_Cut->setEnabled(hasSelection);
     ui->action_Del->setEnabled(hasSelection);
@@ -235,7 +245,7 @@ void TextEdit::updateMenus()//更新菜单栏和标题的显示状态等
     {
         this->setWindowTitle(ui->mdiArea->currentSubWindow()->windowTitle());//更新标题栏的显示
         if(!activeMdiChild()->extraSelections().empty())//判断当前的文档是否高亮显示
-            ui->action_HighLightShow->setChecked(true);       
+            ui->action_HighLightShow->setChecked(true);
         else
             ui->action_HighLightShow->setChecked(false);
 
@@ -257,10 +267,10 @@ void TextEdit::updateMenu_SelectW()//更新“选择窗口”菜单
         QString text;
         if (i < 9) {
             text = tr("&%1 %2").arg(i + 1)
-                               .arg(child->windowTitle().remove("[*]"));
+                    .arg(child->windowTitle().remove("[*]"));
         } else {
             text = tr("%1 %2").arg(i + 1)
-                              .arg(child->windowTitle().remove("[*]"));
+                    .arg(child->windowTitle().remove("[*]"));
         }
         QAction *action  = ui->menu_SelectW->addAction(text);
         action->setCheckable(true);
@@ -350,31 +360,31 @@ void TextEdit::slotList(int index)//文本排序
         QTextListFormat::Style style = QTextListFormat::ListDisc;
         switch(index)
         {
-            default:
-            case 1:
+        default:
+        case 1:
             style = QTextListFormat::ListDisc;
-                break;
-            case 2:
-                style = QTextListFormat::ListCircle;
-                break;
-            case 3:
-                style = QTextListFormat::ListSquare;
-                break;
-            case 4:
-                style = QTextListFormat::ListDecimal;
-                break;
-            case 5:
-                style = QTextListFormat::ListLowerAlpha;
-                break;
-            case 6:
-                style = QTextListFormat::ListUpperAlpha;
-                break;
-            case 7:
-                style = QTextListFormat::ListLowerRoman;
-                break;
-            case 8:
-                style = QTextListFormat::ListUpperRoman;
-                break;
+            break;
+        case 2:
+            style = QTextListFormat::ListCircle;
+            break;
+        case 3:
+            style = QTextListFormat::ListSquare;
+            break;
+        case 4:
+            style = QTextListFormat::ListDecimal;
+            break;
+        case 5:
+            style = QTextListFormat::ListLowerAlpha;
+            break;
+        case 6:
+            style = QTextListFormat::ListUpperAlpha;
+            break;
+        case 7:
+            style = QTextListFormat::ListLowerRoman;
+            break;
+        case 8:
+            style = QTextListFormat::ListUpperRoman;
+            break;
         }
         cursor.beginEditBlock();//与end之间的所有操作相当于一个动作
         QTextBlockFormat blockFmt = cursor.blockFormat();
@@ -411,10 +421,140 @@ void TextEdit::on_action_New_triggered()//新建
     iniConnect();//初始化关联
 }
 
+void TextEdit::on_actionOpen_triggered()
+{
+    //qDebug()<<"make sense";
+    video_full = QFileDialog::getOpenFileName(this,tr("打开视频文件"),"",tr("Medias (*.mp4 *.rmvb *.mkv *.avi *.3gp *.mov)"));
+    videoInfo = QFileInfo(video_full);
+    video_name = videoInfo.fileName();
+    video_path = videoInfo.absolutePath();
+}
+
+void TextEdit::on_actionPlayer_triggered()
+{
+    player_full = QFileDialog::getOpenFileName(this);
+    videoInfo = QFileInfo(player_full);
+    player_name = videoInfo.fileName();
+    player_path = videoInfo.absolutePath();
+}
+
+void TextEdit::on_actionPlay_triggered()
+{
+    if(videoIsPlaying!=1){
+        if(video_full.isEmpty()) {QMessageBox::information(this,"播放失败","请选择视频文件");return;}
+        if(player_name.isEmpty()) {QMessageBox::information(this,"播放失败","请选择播放器");return;}
+        if(!video_full.isEmpty() && !player_name.isEmpty()){//播放 后期加入服务端的远程控制 如何循环播放 上下切换 降低延时
+            on_actionStop_triggered();
+            //ui->pushButton->setVisible(false);
+            //ui->progressBar->setVisible(true);
+            pVideoProcess = new QProcess();//kippprocess waitFor... system("killall mplayer")
+            pVideoProcess->setProcessChannelMode(QProcess::MergedChannels);  //网上说必须设置
+            playerTimer->start(10);
+            QStringList playArg;//#if PC 不同平台
+            playArg << "-slave";//调参
+            playArg << "-quiet";
+            playArg << "-zoom";
+            //playArg << "-x";
+            //playArg << "731";
+            //playArg << "-y";
+            //playArg << "411";
+            playArg<<"-wid";//嵌入到某个窗口播放的命令
+            playArg<<QString::number(ui->videoWidget->winId());//视频在指定窗口库播放
+            //playArg << "-vo";
+            //playArg << "x11";
+            playArg<<video_full;//可选路径 可以是U盘文件 远程推送 目录下的
+            qDebug()<<"playArg:"<<playArg;//playArg: ("-wid", "791326", "C:/Users/keji01/Desktop/4008.mp4")
+            pVideoProcess->start(player_full,playArg);
+            videoIsPlaying = 1;
+            //ui->pushButton_3->setDisabled(true);
+            //ui->pushButton_3->setText("暂停");
+        }
+    }
+}
+
+void TextEdit::playerTime()
+{
+    pVideoProcess->write("get_time_pos\n");  //获得视频当前时间
+    pVideoProcess->write("get_percent_pos\n");  //获得视频百分比
+    pVideoProcess->write("get_time_length\n");  // 获得视频总时间
+    connect(pVideoProcess,SIGNAL(readyReadStandardOutput()),this,SLOT(back_message_slots()));
+}
+
+void TextEdit::back_message_slots()
+{
+    while(pVideoProcess->canReadLine())
+    {
+        QByteArray b(pVideoProcess->readLine());
+        b.replace(QByteArray("\n"), QByteArray(""));
+        QString s(b);
+        if (b.startsWith("ANS_LENGTH"))  //输出视频总时间
+        {
+            int totalTimeNum = s.mid(11).toFloat();  //直接toInt()不成功，不知道原因
+            //int totalTimeDec = (int)(totalTimeNum * 10 % 10);
+            int totalTimeSec = (int)(totalTimeNum) % 60;  //提取秒
+            int totalTimeMin = (int)(totalTimeNum) / 60;  //提取分钟
+            QString totalTime = QString("%1:%2").arg(totalTimeMin).arg(totalTimeSec);  //标准格式输出时间
+            //ui->label_2->setText(totalTime);
+            //ui->progressBar->setRange(0,totalTimeNum);
+        }else if (b.startsWith("ANS_TIME_POSITION"))  //输出视频当前时间
+        {
+            int currentTimeNum = s.mid(18).toFloat();
+            int currentTimeSec = (int)(currentTimeNum) % 60;
+            int currentTimeMin = (int)(currentTimeNum) / 60;
+            videoCurrentTime = QString("%1:%2").arg(currentTimeMin).arg(currentTimeSec);
+            //ui->label->setText(videoCurrentTime);
+            //ui->progressBar->setValue(currentTimeNum);
+            //qDebug()<<"time"<<currentTimeNum;
+        }else if(b.startsWith("ANS_PERCENT_POSITION"))
+        {
+            QString currentPercent = s.mid(21);
+            //ui->label->setText(currentPercent + "%");  //视频播放进度百分比暂时不出输出
+        }
+    }
+}
+
+void TextEdit::on_actionPause_triggered()
+{
+    if(videoIsPlaying==1){//暂停
+        //ui->pushButton_3->setText("播放");
+        pVideoProcess->write("pause\n");
+        videoIsPlaying=2;
+    }
+}
+void TextEdit::on_actionStop_triggered()
+{
+    if(videoIsPlaying!=0) {
+        /*ui->pushButton->setVisible(true);
+        ui->pushButton_3->setText("播放");
+        ui->pushButton_3->setDisabled(false);
+        ui->progressBar->setValue(0);
+        ui->progressBar->setHidden(true);*/
+        pVideoProcess->write("quit\n");//system("killall mplayer");
+        playerTimer->stop();
+        pVideoProcess->kill();
+        videoIsPlaying = 0;
+    }
+}
+void TextEdit::on_actionQuickFast_triggered(){
+
+}
+void TextEdit::on_actionQuickBack_triggered(){
+
+}
+void TextEdit::on_actionMute_triggered(){
+
+}
+void TextEdit::on_action_2_triggered(){
+
+}
+void TextEdit::on_action_triggered(){
+
+}
+
 void TextEdit::on_action_Open_triggered()//打开
 {
     QString fileName = QFileDialog::getOpenFileName//获得要打开的文件名
-                       (this,"open file",NULL,"(*.txt)"";;All File(*.*)"";;(*.html)");
+            (this,"open file",NULL,"(*.txt)"";;All File(*.*)"";;(*.html)");
     if(!fileName.isEmpty())
     {
         QString canonicalFilePath = QFileInfo(fileName).canonicalFilePath();
@@ -435,8 +575,8 @@ void TextEdit::on_action_Open_triggered()//打开
             ui->mdiArea->addSubWindow(child);
             if(child->loadFile(fileName))
             {
-               child->setVisible(true);
-               second_statusLabel->setText(tr("打开成功"));
+                child->setVisible(true);
+                second_statusLabel->setText(tr("打开成功"));
             }
             else
                 child->close();
@@ -495,10 +635,10 @@ void TextEdit::on_action_Font_triggered()//字体设置
 void TextEdit::on_action_FontColor_triggered()//字体颜色设置
 {
     QColor color = QColorDialog::getColor(Qt::black, this);
-   if (color.isValid())
-   {
-       activeMdiChild()->setTextColor(color);
-   }
+    if (color.isValid())
+    {
+        activeMdiChild()->setTextColor(color);
+    }
 }
 
 void TextEdit::on_action_Print_triggered()//打印文档
@@ -513,39 +653,39 @@ void TextEdit::on_action_Print_triggered()//打印文档
 
 void TextEdit::on_action_PrintPreview_triggered()//打印预览
 {
-     QPrinter printer(QPrinter::HighResolution);
-     QPrintPreviewDialog preview(&printer,this);
-     connect(&preview, SIGNAL(paintRequested(QPrinter*)),
-             SLOT(printPreview(QPrinter*)));
-     preview.exec();
+    QPrinter printer(QPrinter::HighResolution);
+    QPrintPreviewDialog preview(&printer,this);
+    connect(&preview, SIGNAL(paintRequested(QPrinter*)),
+            SLOT(printPreview(QPrinter*)));
+    preview.exec();
 }
 
 void TextEdit::printPreview(QPrinter *printer)//打印预览
- {
+{
 #ifdef QT_NO_PRINTER
     Q_UNUSEd(printer);
- #else
-     // MdiChild *child = qobject_cast<MdiChild *>(ui->mdiArea->activeSubWindow()->widget());
-     //child->print(printer);
-     activeMdiChild()->print(printer);
- #endif
- }
+#else
+    // MdiChild *child = qobject_cast<MdiChild *>(ui->mdiArea->activeSubWindow()->widget());
+    //child->print(printer);
+    activeMdiChild()->print(printer);
+#endif
+}
 
 void TextEdit::on_action_PDF_triggered()//输出PDF文档
 {
     if(activeMdiChild())
     {
         QString fileName = QFileDialog::getSaveFileName(
-                this, "Export PDF",activeMdiChild()->curFile + ".pdf","*.pdf");
-            if (!fileName.isEmpty()) {
-                if (QFileInfo(fileName).suffix().isEmpty())
-                    fileName.append(".pdf");
-                QPrinter printer(QPrinter::HighResolution);
-                printer.setOutputFormat(QPrinter::PdfFormat);
-                printer.setOutputFileName(fileName);
-                activeMdiChild()->document()->print(&printer);
-                second_statusLabel->setText(tr("输出PDF文档成功"));
-            }
+                    this, "Export PDF",activeMdiChild()->curFile + ".pdf","*.pdf");
+        if (!fileName.isEmpty()) {
+            if (QFileInfo(fileName).suffix().isEmpty())
+                fileName.append(".pdf");
+            QPrinter printer(QPrinter::HighResolution);
+            printer.setOutputFormat(QPrinter::PdfFormat);
+            printer.setOutputFileName(fileName);
+            activeMdiChild()->document()->print(&printer);
+            second_statusLabel->setText(tr("输出PDF文档成功"));
+        }
     }
 }
 
@@ -622,8 +762,8 @@ void TextEdit::on_action_StatusBarShow_triggered(bool checked)//是否显示状�
 
 void TextEdit::on_action_HighLightShow_triggered(bool checked)//是否高亮显示当前编辑的行
 {
-    if(checked == true) 
-        highlightCurrentLine();  
+    if(checked == true)
+        highlightCurrentLine();
     else
     {
         QList<QTextEdit::ExtraSelection> extraSelections;
@@ -634,23 +774,23 @@ void TextEdit::on_action_HighLightShow_triggered(bool checked)//是否高亮显�
 
 void TextEdit::highlightCurrentLine()//高亮显示当前编辑的行
 {
-   if(ui->action_HighLightShow->isChecked() == true)//是否选中高亮显示
+    if(ui->action_HighLightShow->isChecked() == true)//是否选中高亮显示
     {
-       QList<QTextEdit::ExtraSelection> extraSelections;
+        QList<QTextEdit::ExtraSelection> extraSelections;
 
-       if (!activeMdiChild()->isReadOnly()) {
-           QTextEdit::ExtraSelection selection;
+        if (!activeMdiChild()->isReadOnly()) {
+            QTextEdit::ExtraSelection selection;
 
-           QColor lineColor = QColor(Qt::yellow).lighter(160);
+            QColor lineColor = QColor(Qt::yellow).lighter(160);
 
-           selection.format.setBackground(lineColor);
-           selection.format.setProperty(QTextFormat::FullWidthSelection, true);
-           selection.cursor = activeMdiChild()->textCursor();
-           selection.cursor.clearSelection();
-           extraSelections.append(selection);
-       }
-       activeMdiChild()->setExtraSelections(extraSelections);
-   }
+            selection.format.setBackground(lineColor);
+            selection.format.setProperty(QTextFormat::FullWidthSelection, true);
+            selection.cursor = activeMdiChild()->textCursor();
+            selection.cursor.clearSelection();
+            extraSelections.append(selection);
+        }
+        activeMdiChild()->setExtraSelections(extraSelections);
+    }
 }
 
 
@@ -899,17 +1039,17 @@ void TextEdit::dropEvent(QDropEvent *event)//放下事件
         ui->mdiArea->addSubWindow(child);
         if(child->loadFile(fileName))
         {
-           child->setVisible(true);
-           second_statusLabel->setText(tr("打开成功"));
-           iniConnect();
-           QSettings settings("QT","MDI example");
-           QStringList files = settings.value("recentFiles").toStringList();
-           files.removeAll(fileName);
-           files.prepend(fileName);
-           while(files.size() > MaxRecentFiles)
-               files.removeLast();
-           settings.setValue("recentFiles",files);
-           updateRecentFiles();
+            child->setVisible(true);
+            second_statusLabel->setText(tr("打开成功"));
+            iniConnect();
+            QSettings settings("QT","MDI example");
+            QStringList files = settings.value("recentFiles").toStringList();
+            files.removeAll(fileName);
+            files.prepend(fileName);
+            while(files.size() > MaxRecentFiles)
+                files.removeLast();
+            settings.setValue("recentFiles",files);
+            updateRecentFiles();
         }
         else
             child->close();
@@ -934,4 +1074,22 @@ void TextEdit::iniConnect()//初始化关联
 void TextEdit::contextMenuEvent(QContextMenuEvent *event)
 {
 
+}
+
+void TextEdit::on_pushButton_clicked()
+{
+    activeMdiChild()->append(videoCurrentTime+"  ");
+    //ui->textEdit->append(videoCurrentTime+"  ");
+}
+
+void TextEdit::on_pushButton_2_clicked()
+{
+    QScreen *screen=QGuiApplication::primaryScreen();
+    QString filePathName = "E:/qt/qtCode/project/TextEdit/" + video_name.left(video_name.length() - 4).append("-");
+    filePathName += QDateTime::currentDateTime().toString("yyyy-MM-dd hh-mm-ss");
+    filePathName += ".jpg";
+    if(!screen->grabWindow(ui->videoWidget->winId()).save(filePathName, "jpg"))
+    {
+        qDebug()<<"save full screen failed";
+    }
 }

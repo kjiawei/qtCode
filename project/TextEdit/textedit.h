@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QtPrintSupport/QPrinter>
 #include <QComboBox>
+#include <QFileInfo>
+#include <QProcess>
 
 class MdiChild;
 class QLabel;
@@ -31,11 +33,22 @@ protected:
     void dragEnterEvent(QDragEnterEvent *e);
     void dropEvent(QDropEvent *e);
     void contextMenuEvent(QContextMenuEvent *event);
+
 private:
     Ui::TextEdit *ui;
     Find_Replace *findReplace;
     MdiChild *activeMdiChild();
     void init_statusBar(); //初始化状态栏
+
+    void videoViewInit();//自定义播放器
+    QProcess *pVideoProcess;//播放视频的进程
+    int videoIsPlaying;//0end/noPlaying 1playing 2pause
+    bool voiceMute;//静音
+    int tmpVoiceVolume;//音量调节
+    QString video_full, video_name, video_path,player_full, player_name, player_path;
+    QString videoCurrentTime;//保存笔记时的视频时刻
+    QFileInfo videoInfo,playerInfo;
+    QTimer *playerTimer;//视频播放定时器 获取进度信息等
 
     QLabel* first_statusLabel; //声明3个标签对象，用于显示状态信息
     QLabel* second_statusLabel;
@@ -71,9 +84,13 @@ private:
     void doFind(QString findText);//查找的实现函数
     bool doReplaceAllFind(QString findText);//全部替换的查找实现函数
 
-
+signals:
+    void readyReadStandardOutput();
 
 private slots:
+    void playerTime();
+    void back_message_slots();
+
     void on_action_zoomOut_triggered();
     void on_action_zoomIn_triggered();
     void on_action_Replace_triggered();
@@ -109,6 +126,17 @@ private slots:
     void on_action_Open_triggered();
     void on_action_New_triggered();
 
+    void on_actionOpen_triggered();
+    void on_actionPlayer_triggered();
+    void on_actionPlay_triggered();
+    void on_actionPause_triggered();
+    void on_actionStop_triggered();
+    void on_actionQuickFast_triggered();
+    void on_actionQuickBack_triggered();
+    void on_actionMute_triggered();
+    void on_action_2_triggered();
+    void on_action_triggered();
+
     void updateMenus();
     void timerUpDate();  //定时器
     void do_cursorChanged(); //获取光标位置信息
@@ -127,6 +155,8 @@ private slots:
     void replaceAll();//全部替换
 
 
+    void on_pushButton_clicked();
+    void on_pushButton_2_clicked();
 };
 
 #endif // TEXTEDIT_H

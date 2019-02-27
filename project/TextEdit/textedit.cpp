@@ -122,6 +122,8 @@ TextEdit::~TextEdit()
 void TextEdit::videoViewInit()
 {
     videoIsPlaying=0;
+    video_name="noplaying-";
+    cutScreenPath="E:/qt/qtCode/project/TextEdit/";
     ui->videoWidget->setStyleSheet("background-color:black;");
     playerTimer = new QTimer;
     connect(playerTimer,SIGNAL(timeout()),this,SLOT(playerTime()));
@@ -555,6 +557,8 @@ void TextEdit::on_action_Open_triggered()//打开
 {
     QString fileName = QFileDialog::getOpenFileName//获得要打开的文件名
             (this,"open file",NULL,"(*.txt)"";;All File(*.*)"";;(*.html)");
+    QFileInfo fi = QFileInfo(fileName);//file_name = fi.fileName();
+    cutScreenPath = fi.absolutePath();
     if(!fileName.isEmpty())
     {
         QString canonicalFilePath = QFileInfo(fileName).canonicalFilePath();
@@ -671,6 +675,7 @@ void TextEdit::printPreview(QPrinter *printer)//打印预览
 #endif
 }
 
+//https://blog.csdn.net/u012234115/article/details/43603923 实例
 void TextEdit::on_action_PDF_triggered()//输出PDF文档
 {
     if(activeMdiChild())
@@ -1076,18 +1081,23 @@ void TextEdit::contextMenuEvent(QContextMenuEvent *event)
 
 }
 
+//标记时刻
 void TextEdit::on_pushButton_clicked()
 {
     activeMdiChild()->append(videoCurrentTime+"  ");
     //ui->textEdit->append(videoCurrentTime+"  ");
 }
 
+//截屏
 void TextEdit::on_pushButton_2_clicked()
 {
-    QScreen *screen=QGuiApplication::primaryScreen();
-    QString filePathName = "E:/qt/qtCode/project/TextEdit/" + video_name.left(video_name.length() - 4).append("-");
+    QScreen *screen=QGuiApplication::primaryScreen();//"E:/qt/qtCode/project/TextEdit/"
+    qDebug()<<"cutScreenPath:"<<cutScreenPath;
+    QString filePathName = cutScreenPath + "/" + video_name.left(video_name.length() - 4).append("-");
     filePathName += QDateTime::currentDateTime().toString("yyyy-MM-dd hh-mm-ss");
+    filePathName += " " + videoCurrentTime;
     filePathName += ".jpg";
+    activeMdiChild()->save();
     if(!screen->grabWindow(ui->videoWidget->winId()).save(filePathName, "jpg"))
     {
         qDebug()<<"save full screen failed";

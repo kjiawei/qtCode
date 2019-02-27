@@ -49,6 +49,7 @@ private:
     QString videoCurrentTime;//保存笔记时的视频时刻
     QFileInfo videoInfo,playerInfo;
     QTimer *playerTimer;//视频播放定时器 获取进度信息等
+    QString cutScreenPath;
 
     QLabel* first_statusLabel; //声明3个标签对象，用于显示状态信息
     QLabel* second_statusLabel;

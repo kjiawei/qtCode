@@ -1,0 +1,16 @@
+INPUT(
+./debug\main.o
+./debug\Widget.o
+./debug\WWWNOTE.o
+./debug\VideoWidget.o
+./debug\MainSlider.o
+./debug\VolumeSlider.o
+./debug\ListWidget.o
+./debug\BottomWidget.o
+./debug\moc_Widget.o
+./debug\moc_VideoWidget.o
+./debug\moc_MainSlider.o
+./debug\moc_VolumeSlider.o
+./debug\moc_ListWidget.o
+./debug\moc_BottomWidget.o
+);

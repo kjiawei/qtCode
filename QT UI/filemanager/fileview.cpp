@@ -342,7 +342,6 @@ void fileview::triggerpasteAction()
         }
 
     }
-
 }
 
 void fileview::triggerdelAction()

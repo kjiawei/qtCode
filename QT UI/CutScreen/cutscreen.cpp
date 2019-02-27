@@ -18,7 +18,7 @@ CutScreen::~CutScreen()
 void CutScreen::on_cutBt_clicked()
 {
     //截屏
-    QPixmap pixmap = QApplication::screens().at(0)->grabWindow(0,0,0,400,400);
+    QPixmap pixmap = QApplication::screens().at(0)->grabWindow(0,0,0,560,331);//400 400
     //保存截屏
     //pixmap.save("./screen.jpg");
     pixmap = pixmap.scaled(ui->label->size());

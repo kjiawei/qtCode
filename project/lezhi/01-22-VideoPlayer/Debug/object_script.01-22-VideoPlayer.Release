@@ -1,0 +1,16 @@
+INPUT(
+./release\main.o
+./release\Widget.o
+./release\WWWNOTE.o
+./release\VideoWidget.o
+./release\MainSlider.o
+./release\VolumeSlider.o
+./release\ListWidget.o
+./release\BottomWidget.o
+./release\moc_Widget.o
+./release\moc_VideoWidget.o
+./release\moc_MainSlider.o
+./release\moc_VolumeSlider.o
+./release\moc_ListWidget.o
+./release\moc_BottomWidget.o
+);

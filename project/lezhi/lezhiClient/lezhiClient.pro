@@ -15,11 +15,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     rolltext.cpp \
-    weatherlabel.cpp
+    weatherlabel.cpp \
+    screenthread.cpp
 
 HEADERS  += mainwindow.h \
     rolltext.h \
-    weatherlabel.h
+    weatherlabel.h \
+    screenthread.h
 
 FORMS    += mainwindow.ui \
     weatherlabel.ui

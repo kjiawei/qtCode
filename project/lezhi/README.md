@@ -1,6 +1,7 @@
 ## 开发环境 编译说明
 windows/Ubuntu + qtCreator 3.4.2(Qt 5.5.0)
 1.网络设置时去宏修改自己的IP和端口
+2.mplayer目录设置:根目录下mplayer_exe下的mplayer.exe
 
 ### 功能
 #### 客户端Client

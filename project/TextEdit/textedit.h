@@ -7,6 +7,8 @@
 #include <QFileInfo>
 #include <QProcess>
 
+#define N_MAX_SIZE 100
+
 class MdiChild;
 class QLabel;
 class QComboBox;
@@ -18,13 +20,17 @@ namespace Ui {
     class TextEdit;
 }
 
+struct NodeInfo{
+    QString nText;
+    QString nPicPath;
+    QString nTime;
+};
 
 class TextEdit : public QMainWindow {
     Q_OBJECT
 public:
     TextEdit(QWidget *parent = 0);
     ~TextEdit();
-
 
 protected:
     void changeEvent(QEvent *e);
@@ -49,7 +55,13 @@ private:
     QString videoCurrentTime;//保存笔记时的视频时刻
     QFileInfo videoInfo,playerInfo;
     QTimer *playerTimer;//视频播放定时器 获取进度信息等
+    int currentTimeNum;//视频总时长 秒
+    int playedSecond;//视频已播时长
     QString cutScreenPath;
+    QString pdfTmpName;
+    NodeInfo pdfInfo[N_MAX_SIZE];
+    bool clickAfterVideoStart;//控制视频播放后的截屏按钮开关
+    int iN;//按钮点击数-生成笔记条数
 
     QLabel* first_statusLabel; //声明3个标签对象，用于显示状态信息
     QLabel* second_statusLabel;
@@ -137,8 +149,12 @@ private slots:
     void on_actionMute_triggered();
     void on_action_2_triggered();
     void on_action_triggered();
+    void on_actionFullScreen_triggered();
+    void on_actionWordOutput_triggered();
+
 
     void updateMenus();
+    QString generatePicWord();
     void timerUpDate();  //定时器
     void do_cursorChanged(); //获取光标位置信息
     void printPreview(QPrinter *printer);

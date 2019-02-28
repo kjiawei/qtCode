@@ -17,7 +17,7 @@
    <string>TextEdit</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -36,14 +36,14 @@
         </size>
        </property>
        <property name="text">
-        <string>标记时刻</string>
+        <string>截屏时刻</string>
        </property>
       </widget>
      </item>
      <item row="0" column="2">
       <widget class="QPushButton" name="pushButton_2">
        <property name="text">
-        <string>截屏</string>
+        <string>生成笔记</string>
        </property>
       </widget>
      </item>
@@ -93,6 +93,7 @@
     <addaction name="menu_RecentFile"/>
     <addaction name="separator"/>
     <addaction name="action_Quit"/>
+    <addaction name="actionWordOutput"/>
    </widget>
    <widget class="QMenu" name="menu_E">
     <property name="title">
@@ -186,6 +187,7 @@
     <addaction name="actionMute"/>
     <addaction name="action"/>
     <addaction name="action_2"/>
+    <addaction name="actionFullScreen"/>
    </widget>
    <addaction name="menu_F"/>
    <addaction name="menu_E"/>
@@ -605,6 +607,16 @@
   <action name="action_2">
    <property name="text">
     <string>-</string>
+   </property>
+  </action>
+  <action name="actionWordOutput">
+   <property name="text">
+    <string>wordOutput</string>
+   </property>
+  </action>
+  <action name="actionFullScreen">
+   <property name="text">
+    <string>fullScreen</string>
    </property>
   </action>
  </widget>

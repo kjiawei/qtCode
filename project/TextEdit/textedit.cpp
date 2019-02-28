@@ -12,6 +12,11 @@
 #include <QtPrintSupport/QPrintPreviewDialog>
 #include <QMessageBox>
 
+#include <QAxWidget>
+#include <QAxObject>
+
+#define N_MAX_SIZE 100 //生成笔记最大条数
+
 TextEdit::TextEdit(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::TextEdit)
@@ -121,9 +126,17 @@ TextEdit::~TextEdit()
 
 void TextEdit::videoViewInit()
 {
+    iN=-1;
+    playedSecond=0;
+    tmpVoiceVolume=50;
+    voiceMute=false;
+    clickAfterVideoStart=false;
     videoIsPlaying=0;
     video_name="noplaying-";
+    video_full="‪C:/Users/keji01/Desktop/调试模块/学猫叫.mp4";
+    player_full="C:/Users/keji01/Desktop/调试模块/mplayer_exe/mplayer.exe";
     cutScreenPath="E:/qt/qtCode/project/TextEdit/";
+    //pdfTmpName = cutScreenPath+video_name.left(video_name.length() - 4)+"笔记.pdf";
     ui->videoWidget->setStyleSheet("background-color:black;");
     playerTimer = new QTimer;
     connect(playerTimer,SIGNAL(timeout()),this,SLOT(playerTime()));
@@ -425,11 +438,11 @@ void TextEdit::on_action_New_triggered()//新建
 
 void TextEdit::on_actionOpen_triggered()
 {
-    //qDebug()<<"make sense";
     video_full = QFileDialog::getOpenFileName(this,tr("打开视频文件"),"",tr("Medias (*.mp4 *.rmvb *.mkv *.avi *.3gp *.mov)"));
     videoInfo = QFileInfo(video_full);
     video_name = videoInfo.fileName();
     video_path = videoInfo.absolutePath();
+    qDebug()<<"video_full:"<<video_full;
 }
 
 void TextEdit::on_actionPlayer_triggered()
@@ -438,14 +451,15 @@ void TextEdit::on_actionPlayer_triggered()
     videoInfo = QFileInfo(player_full);
     player_name = videoInfo.fileName();
     player_path = videoInfo.absolutePath();
+    qDebug()<<"player_full:"<<player_full;
 }
 
 void TextEdit::on_actionPlay_triggered()
 {
     if(videoIsPlaying!=1){
         if(video_full.isEmpty()) {QMessageBox::information(this,"播放失败","请选择视频文件");return;}
-        if(player_name.isEmpty()) {QMessageBox::information(this,"播放失败","请选择播放器");return;}
-        if(!video_full.isEmpty() && !player_name.isEmpty()){//播放 后期加入服务端的远程控制 如何循环播放 上下切换 降低延时
+        if(player_full.isEmpty()) {QMessageBox::information(this,"播放失败","请选择播放器");return;}
+        if(!video_full.isEmpty() && !player_full.isEmpty()){//播放 后期加入服务端的远程控制 如何循环播放 上下切换 降低延时
             on_actionStop_triggered();
             //ui->pushButton->setVisible(false);
             //ui->progressBar->setVisible(true);
@@ -453,9 +467,10 @@ void TextEdit::on_actionPlay_triggered()
             pVideoProcess->setProcessChannelMode(QProcess::MergedChannels);  //网上说必须设置
             playerTimer->start(10);
             QStringList playArg;//#if PC 不同平台
-            playArg << "-slave";//调参
-            playArg << "-quiet";
-            playArg << "-zoom";
+            playArg << "-slave";//默认情况下，mplayer接受键盘的命令，而"-slave"使其不再接受键盘事件，而是作为后台程序运
+            //行，接受以“\n”结束的命令控制，这样我们可以在进程中给他发送命令，而不需要操作键盘了
+            playArg << "-quiet";//尽可能的不打印播放信息
+            playArg << "-zoom";//视频居中，四周黑条，全屏播放
             //playArg << "-x";
             //playArg << "731";
             //playArg << "-y";
@@ -468,10 +483,22 @@ void TextEdit::on_actionPlay_triggered()
             qDebug()<<"playArg:"<<playArg;//playArg: ("-wid", "791326", "C:/Users/keji01/Desktop/4008.mp4")
             pVideoProcess->start(player_full,playArg);
             videoIsPlaying = 1;
+            clickAfterVideoStart=true;
             //ui->pushButton_3->setDisabled(true);
             //ui->pushButton_3->setText("暂停");
         }
     }
+}
+
+void TextEdit::on_actionPause_triggered()
+{
+    qDebug()<<"videoIsPlaying:"<<videoIsPlaying;
+    if(videoIsPlaying==1){//暂停
+        //ui->pushButton_3->setText("播放");
+        //pVideoProcess->write("pause\n");//不生效
+        videoIsPlaying=2;
+    }
+    qDebug()<<"videoIsPlaying:"<<videoIsPlaying;
 }
 
 void TextEdit::playerTime()
@@ -500,29 +527,23 @@ void TextEdit::back_message_slots()
             //ui->progressBar->setRange(0,totalTimeNum);
         }else if (b.startsWith("ANS_TIME_POSITION"))  //输出视频当前时间
         {
-            int currentTimeNum = s.mid(18).toFloat();
+            currentTimeNum = s.mid(18).toFloat();
             int currentTimeSec = (int)(currentTimeNum) % 60;
             int currentTimeMin = (int)(currentTimeNum) / 60;
-            videoCurrentTime = QString("%1:%2").arg(currentTimeMin).arg(currentTimeSec);
+            videoCurrentTime = QString("%1-%2").arg(currentTimeMin).arg(currentTimeSec);
             //ui->label->setText(videoCurrentTime);
             //ui->progressBar->setValue(currentTimeNum);
             //qDebug()<<"time"<<currentTimeNum;
         }else if(b.startsWith("ANS_PERCENT_POSITION"))
         {
             QString currentPercent = s.mid(21);
+            //qDebug()<<"currentPercent:"<<currentPercent;
+            if(currentPercent.contains("99")) videoIsPlaying=0;
             //ui->label->setText(currentPercent + "%");  //视频播放进度百分比暂时不出输出
         }
     }
 }
 
-void TextEdit::on_actionPause_triggered()
-{
-    if(videoIsPlaying==1){//暂停
-        //ui->pushButton_3->setText("播放");
-        pVideoProcess->write("pause\n");
-        videoIsPlaying=2;
-    }
-}
 void TextEdit::on_actionStop_triggered()
 {
     if(videoIsPlaying!=0) {
@@ -537,20 +558,62 @@ void TextEdit::on_actionStop_triggered()
         videoIsPlaying = 0;
     }
 }
-void TextEdit::on_actionQuickFast_triggered(){
 
+void TextEdit::on_actionQuickFast_triggered()
+{
+    pVideoProcess->write("pausing_keep seek +5 0\n");
 }
-void TextEdit::on_actionQuickBack_triggered(){
 
+void TextEdit::on_actionQuickBack_triggered()
+{
+    pVideoProcess->write("pausing_keep seek -5 0\n");
 }
-void TextEdit::on_actionMute_triggered(){
 
+void TextEdit::on_actionMute_triggered()
+{
+    if(videoIsPlaying==1){
+        if(voiceMute){
+            pVideoProcess->write("mute 0\n");
+            //ui->pushButton_8->setText("静音");
+        }else{
+            pVideoProcess->write("mute 1\n");
+            //ui->pushButton_8->setText("声音");
+        }
+        voiceMute=!voiceMute;
+    }
 }
-void TextEdit::on_action_2_triggered(){
 
+void TextEdit::on_action_2_triggered()
+{
+    --tmpVoiceVolume;
+//    ui->voiceSlider->setVisible(true);
+    if(pVideoProcess->isReadable()){
+    pVideoProcess->write(QString("volume %1 2\n").arg(tmpVoiceVolume).toUtf8());
+    }
+    //    ui->voiceSlider->setValue(tmpVoiceVolume);
+
+//    Sleep(2000);
+//    ui->voiceSlider->setVisible(false);
 }
-void TextEdit::on_action_triggered(){
+//
 
+void TextEdit::on_action_triggered()
+{//pVideoProcess->write(QString("seek %1 2\n").arg(value).toUtf8());  //视频进度拖放
+    //->write("get_time_length\n");  //获得视频总得时间
+    ++tmpVoiceVolume;
+    //ui->voiceSlider->setVisible(true);
+    if(pVideoProcess->isReadable()){
+    pVideoProcess->write(QString("volume %1 2\n").arg(tmpVoiceVolume).toUtf8());
+    }
+    //ui->voiceSlider->setValue(tmpVoiceVolume);
+
+    //Sleep(2000);慎用 比UI先执行的感觉
+    //ui->voiceSlider->setVisible(false);
+}
+
+void TextEdit::on_actionFullScreen_triggered()
+{
+    pVideoProcess->write("vo_fullscreen\n");
 }
 
 void TextEdit::on_action_Open_triggered()//打开
@@ -675,12 +738,13 @@ void TextEdit::printPreview(QPrinter *printer)//打印预览
 #endif
 }
 
+//https://blog.csdn.net/tszhangjunqiao/article/details/22681351 动态组合内容
 //https://blog.csdn.net/u012234115/article/details/43603923 实例
 void TextEdit::on_action_PDF_triggered()//输出PDF文档
 {
     if(activeMdiChild())
     {
-        QString fileName = QFileDialog::getSaveFileName(
+        /*QString fileName = QFileDialog::getSaveFileName(
                     this, "Export PDF",activeMdiChild()->curFile + ".pdf","*.pdf");
         if (!fileName.isEmpty()) {
             if (QFileInfo(fileName).suffix().isEmpty())
@@ -690,8 +754,102 @@ void TextEdit::on_action_PDF_triggered()//输出PDF文档
             printer.setOutputFileName(fileName);
             activeMdiChild()->document()->print(&printer);
             second_statusLabel->setText(tr("输出PDF文档成功"));
-        }
+        }*/
+
+        //文本生成pdf,不要设置resolution，否则输出会乱掉
+        QPainter text_painter;
+        QPrinter text_printer;
+        text_printer.setOutputFormat(QPrinter::PdfFormat);
+        pdfTmpName = cutScreenPath+"/"+video_name.left(video_name.length() - 4)+"笔记.pdf";
+        text_printer.setOutputFileName(pdfTmpName);
+        //        text_painter.begin(&text_printer);
+        //        for (int i = 0; i < 5; i++)
+        //            text_painter.drawText(10, i * 30, "hello world");
+        //        text_painter.end();
+
+        QTextDocument text_document;//承载文本 图像和表格
+        QString html = generatePicWord();//自定义的函数，用来生成html代码
+        text_document.setHtml(html);
+        text_document.print(&text_printer);
+        text_document.end();//QTextBlock it = text_document.end();
+        clickAfterVideoStart=false;
     }
+}
+
+QString TextEdit::generatePicWord()
+{
+    QString html;    //文字部分
+    QDateTime current_date_time = QDateTime::currentDateTime();
+    QString current_date = current_date_time.toString("yyyy-MM-dd hh:mm:ss ddd");
+    html += "<h2 align=\"center\">"+ pdfTmpName +"</h2>";//标题
+    html += "<h4 align=\"center\">" + current_date + "</h2><br>";//时间
+
+    //使用场景:截屏按钮(添加时刻)[点一次截屏,字符串生成一个图文]
+    //图文部分:获取目录下所有txt和pic文件并根据文件名和内容生成
+    //遍历目录下所有文件名并将图片的存储到图片路径数组
+    QString imagepath="C:/Users/keji01/Desktop/调试模块/test/学猫叫-2019-02-27 17-33-51.jpg";
+    //根据图片名详细时刻比对笔记内容截取并保存到笔记内容数组
+
+    for(int i=0;i<iN+1; ++i){//遍历输出
+        html += "< img align=\"middle\" src = \"" + pdfInfo[i].nPicPath + "\"  width=\"600\" height=\""+QString::number(480) + "\"/><br>" ;
+    //}
+
+    //表格部分
+    html +=  "<table align=\"center\" border=\"0.2\" cellspacing=\"0\" cellpadding=\"0\"  style=\"width: 100%; height: 100%;\">";
+    html +="<tr>";
+    //QString fieldname="haha2";
+    //for ( int i = 0; i < iN; ++i){
+        //fieldname = fields[i].name();
+        html +="<td bgcolor=\"Silver\">" + pdfInfo[i].nText + "</td>";
+        html +="</tr></table>";
+    }
+    //html +="</tr></table>";
+    return html;
+}
+
+
+//https://blog.csdn.net/vinson0526/article/details/11094877?utm_source=blogxgwz6
+void TextEdit::on_actionWordOutput_triggered()
+{
+#if 0
+    // 新建一个word应用程序,并设置为不可见
+    QAxWidget *word=new QAxWidget("Word.Application", 0, Qt::MSWindowsOwnDC);
+    word->setProperty("Visible", false);
+    // 获取所有的工作文档
+    QAxObject * documents = word->querySubObject("Documents");
+    // 以文件template.dot为模版新建一个文档
+    documents->dynamicCall("Add(QString)",QString("D:/template.dot"));
+    // 获取当前激活的文档
+    QAxObject *document=word->querySubObject("ActiveDocument");
+    // 获取文档中名字为label1的标签
+    QAxObject*bookmark_text=document->querySubObject("Bookmarks(label1)");
+    // 选中标签，将字符InsertText插入到标签位置
+    if(!bookmark_text->isNull())
+    {
+        bookmark_text->dynamicCall("Select(void)");
+        bookmark_text->querySubObject("Range")->setProperty("Text","InsertText");
+    }
+    // 获取文档中名字为label2的标签
+    QAxObject *bookmark_pic = document->querySubObject("Bookmarks(label2)");
+    // 选中标签，将图片插入到标签位置
+    if(!bookmark_pic->isNull())
+    {
+        bookmark_pic->dynamicCall("Select(void)");
+        QAxObject *Inlineshapes = document->querySubObject("InlineShapes");
+        Inlineshapes->dynamicCall("AddPicture(const QString&)","D:/123.jpg");  //路径必须为windows路径格式
+    }
+
+    // 将文件另存为docbyqt.doc,关闭工作文档，退出应用程序
+    document->dynamicCall("SaveAs (const QString&)", QString("D:/docbyqt.doc"));
+    document->dynamicCall("Close (boolean)", false);
+    word->dynamicCall("Quit()");
+
+    delete bookmark_text;
+    delete bookmark_pic;
+    delete document;
+    delete documents;
+    delete word;
+#endif
 }
 
 void TextEdit::on_action_Undo_triggered()//撤销
@@ -1081,25 +1239,38 @@ void TextEdit::contextMenuEvent(QContextMenuEvent *event)
 
 }
 
-//标记时刻
+//截屏时刻
 void TextEdit::on_pushButton_clicked()
 {
-    activeMdiChild()->append(videoCurrentTime+"  ");
+    activeMdiChild()->append(videoCurrentTime+"  ");//添加时刻到活动窗口
     //ui->textEdit->append(videoCurrentTime+"  ");
-}
-
-//截屏
-void TextEdit::on_pushButton_2_clicked()
-{
     QScreen *screen=QGuiApplication::primaryScreen();//"E:/qt/qtCode/project/TextEdit/"
     qDebug()<<"cutScreenPath:"<<cutScreenPath;
     QString filePathName = cutScreenPath + "/" + video_name.left(video_name.length() - 4).append("-");
     filePathName += QDateTime::currentDateTime().toString("yyyy-MM-dd hh-mm-ss");
     filePathName += " " + videoCurrentTime;
+    //qDebug()<<"videoCurrentTime:"<<videoCurrentTime;
     filePathName += ".jpg";
     activeMdiChild()->save();
     if(!screen->grabWindow(ui->videoWidget->winId()).save(filePathName, "jpg"))
     {
         qDebug()<<"save full screen failed";
     }
+
+    if(clickAfterVideoStart){
+    //笔记内容添加
+        ++iN;
+    pdfInfo[iN].nTime = videoCurrentTime;
+    pdfInfo[iN].nPicPath = filePathName;
+    pdfInfo[iN].nText = QString::number(iN);
+    }else{
+        iN=-1;
+    }
+    qDebug("clickAfterVideoStart:%d,iN:%d",clickAfterVideoStart,iN);
+}
+
+//生成笔记
+void TextEdit::on_pushButton_2_clicked()
+{
+    on_action_PDF_triggered();
 }

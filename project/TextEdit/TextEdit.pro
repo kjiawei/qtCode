@@ -16,3 +16,4 @@ FORMS += textedit.ui \
 RESOURCES += resources.qrc
 OTHER_FILES += myIcon.rc
 RC_FILE += myIcon.rc
+CONFIG  += qaxcontainer

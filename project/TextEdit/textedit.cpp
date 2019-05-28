@@ -466,7 +466,7 @@ void TextEdit::on_actionPlay_triggered()
             pVideoProcess = new QProcess();//kippprocess waitFor... system("killall mplayer")
             pVideoProcess->setProcessChannelMode(QProcess::MergedChannels);  //网上说必须设置
             playerTimer->start(10);
-            QStringList playArg;//#if PC 不同平台
+            QStringList playArg,playArg2;//#if PC 不同平台
             playArg << "-slave";//默认情况下，mplayer接受键盘的命令，而"-slave"使其不再接受键盘事件，而是作为后台程序运
             //行，接受以“\n”结束的命令控制，这样我们可以在进程中给他发送命令，而不需要操作键盘了
             playArg << "-quiet";//尽可能的不打印播放信息
@@ -481,7 +481,9 @@ void TextEdit::on_actionPlay_triggered()
             //playArg << "x11";
             playArg<<video_full;//可选路径 可以是U盘文件 远程推送 目录下的
             qDebug()<<"playArg:"<<playArg;//playArg: ("-wid", "791326", "C:/Users/keji01/Desktop/4008.mp4")
+            //playArg2<<"‪C:/Users/keji01/Desktop/调试模块/学猫叫.mp4";
             pVideoProcess->start(player_full,playArg);
+            //pVideoProcess->start("ffplay",playArg2);//没指定窗口
             videoIsPlaying = 1;
             clickAfterVideoStart=true;
             //ui->pushButton_3->setDisabled(true);
